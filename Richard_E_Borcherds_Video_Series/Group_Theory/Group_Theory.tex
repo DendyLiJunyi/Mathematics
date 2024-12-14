@@ -1,0 +1,266 @@
+% Created 2024-12-13 Fri 21:53
+% Intended LaTeX compiler: xelatex
+\documentclass[11pt]{article}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\input{~/Preamble/preamble.tex}
+\author{Richard E Borcherds}
+\date{\today}
+\title{Group Theory}
+\hypersetup{
+ pdfauthor={Richard E Borcherds},
+ pdftitle={Group Theory},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Notes taken by Dendy Jun Yi Li}, 
+ pdflang={English}}
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\section{Lecture 1 Intoduction}
+\label{sec:orgfd7c877}
+
+\begin{definition}[Group(Informal)]
+\textbf{Group} is symmetry on some object.
+\end{definition}
+
+\begin{definition}[Order of symmetry(Informal)]
+Order of the symmetry is the steps it takes to go back to the original state.
+\end{definition}
+
+\begin{examplle}[Common symmetries]
+The following are common symmetries one might meet:
+
+\begin{itemize}
+\item Symmetry of Geometric object can be rotation;
+\item Symmetry of \(\Z\) is shifting;
+\item Symmetry of finite points is bijection on itself;
+\item Symmetry of vector space is linear transformations;
+\item Symmetry of \(C\) is the map \(x + iy \mapsto x - iy\), which will later be called Galois Group;
+\item Galois theory is abour symmetry of field extensions;
+\item Symmetry of space-time
+\begin{itemize}
+\item Lorentz group : Fix a point;
+\item Poincar$\backslash$'\{e\} group : Don't fix a point.
+\end{itemize}
+\end{itemize}
+\end{examplle}
+
+\begin{definition}[Group(Informal)]
+Symmetries of mathematical objects form a group.
+\end{definition}
+
+\begin{definition}[Symmetry of Group]
+Symmetry of group is the map to themselves which preserving their structures.
+\end{definition}
+
+\begin{examplle}[Symmetry of \(\Z/5\Z\)]
+The structure of \(\Z/5\Z\) is just adding numbers and modulo 5. Consider the following process:
+\begin{itemize}
+\item \(1 \mapsto 2\), then since \(1 + 1 = 2\), we also have \(2 + 2 = 4\). This maps \(2 \mapsto 4\);
+\item \(2 \mapsto 4\), then since \(2 + 2 = 4\), we also have \(4 + 4 = 3\). This maps \(4 \mapsto 3\);
+\item \(4 \mapsto 3\), then since \(4 + 4 = 3\), we also have \(3 + 3 = 1\). This maps \(3 \mapsto 1\);
+\item \(3 \mapsto 1\), then since \(3 + 3 = 1\), we also have \(1 + 1 = 2\), this is just \(1 \mapsto 2\).
+\end{itemize}
+\end{examplle}
+
+Now we can deduce the axioms for a group in the definition below.
+
+\begin{definition}[Group(Axiom)]
+Axioms of group \textbf{might} be as follows:
+\begin{itemize}
+\item A group is a set with multiplication(Composition of symmetry);
+\item \textbf{Associativity:} \((ab)c = a(bc)\);
+\item \textbf{Identity:} \(e\)(stay the same);
+\item \textbf{Invertibility:} Undo symmetry is allowed.
+\end{itemize}
+\end{definition}
+
+\textbf{It's obvious that any set of symmetries with composition satisfy these axioms, which means necessary.} But whether these axioms are sufficient to characterise any set of symmetries, this will be shown by \textbf{Carley's theorem}.
+
+\begin{definition}[Group of all symmetries]
+Group of all symmetries of \(n\) finite points is denoted by \(S_n\). The cardinality of \(S_n\) is \(n!\).
+\end{definition}
+
+\begin{definition}[Group of permutations of set \(S\)]
+Group of permutations of set \(S\) is all bijections on the set \(S\).
+\end{definition}
+
+\textbf{Remark:} Group of symmetry is bounded with a finite set of points, and by our convention is it just bijections.
+
+\textbf{The Goal of Group theory}
+\begin{itemize}
+\item Classify groups up to isomorphism;
+\item Classify all ways group is ``symmetries of something'' (Representation Theory).
+\end{itemize}
+
+\begin{definition}[Isomorphism(Informal)]
+Isomorphsim means two structures are essentially the same after relabeling, i.e. if \(f : G \to H\) is a relabeling, consider \(G, H\) are two groups, then \(x,y \in G\) behave same as \(f(x), f(y) \in H\) behave under group axioms.
+\end{definition}
+\section{Lecture 2 Carley's Theorem}
+\label{sec:org9af047a}
+
+Just a recall, right now we have two ways to show some mathematical object is a group:
+\begin{enumerate}
+\item Symmetries of something;
+\item Axioms of group(abstract definition).
+\end{enumerate}
+
+\((1) \to (2)\) is obvious be cause we define axioms of group like this. It's also worth noticing that this is also the process of how we show a theory is axiomatisable in logic, just add enough things to capture the characteristics of the structure. Then back and forth.
+
+For \((2) \to (1)\) is well-known Carley's theorem.
+
+Since elements of a group is the symmetry of ``something'', so it is natural to abstract ``something'' into a set \(S\), denote the group to be \(G\). We have the following definition of group action:
+
+\begin{definition}[Group action]
+The process which group \(G\) act on \(S\) can be represented by function \(G \times S \to S\) where \((g,s) \mapsto g(s)\), which satisfies:
+\begin{itemize}
+\item \(g, h \in G\), \((gh)s = g(h(s))\);
+\item \(1s = s\).
+\end{itemize}
+\end{definition}
+
+\begin{examplle}[ ]
+Let \(G :=\) symmetries of a triangle, then \(S\) can be a set of vertices(Not necessarily to be vertices of triangle).
+\end{examplle}
+
+\textbf{Remark:}
+\begin{enumerate}
+\item From the definition of group action we can notice that, it just want to characterise how a universal ``object'' behaves under symmetry, it's like a converse process of how we construct the axioms of the group - we characterise the property which the symmetry has;
+\item One also need to notice that we don't care about which element \(g(s)\) is in the abstract definition(Because \(g(s)\) relies on our choice of the action).
+\end{enumerate}
+
+One special case is that we can consider the group act on itself, with the canonical choice of the function \(G \times G \to G\), where \(gh \mapsto g\circ h\). One important reason of why we consider this group action is also because we can naturally choose the function \(G \to G\), since we already have one. \textbf{For the second \(G\) we forget its group structure.}
+
+\textbf{Convention:} \(G_S\) means group \(G\) we forget its group structure, i.e. as a set.
+
+\textbf{Consider \(G\) acts on \(G_S\) directly implies the fact that \(G\) is a subgroup of permutations on \(G_S\).}
+
+\begin{definition}[Subgroup]
+\(G\) is a subgroup of \(H\) means \(G\) is a subset of \(H\), has same product and closed under this product.
+\end{definition}
+
+\begin{lemma}[\(G\)-action on \(G_S\) is a set of bijections on \(G_S\)]
+Since the \(G\)-action here is just multiplication on \(G\). For a fixed \(g \in G\), \(\forall h, h_1, h_2 \in G\). We have the following facts:
+\begin{enumerate}
+\item Surjective: \(h = g (g^{-1} h)\);
+\item Injective: \(gh_1 = gh_2\), then \(g^{-1}gh_1 = g^{-1}gh_2\) which is just \(h_1 = h_2\).
+\end{enumerate}
+Therefore \(G\)-action on \(G_S\) is a subset of all bijections on \(G_S\).
+\end{lemma}
+
+\begin{lemma}[\(G\)-action is closed under composition of symmetry]
+This lemma just followed by the definition of group action. Because we want the Group action to be closed, i.e. \(g(h(s)) = (gh)(s)\), since \(gh \in G\) thus also belongs to \(G\)-action.
+\end{lemma}
+
+By the above two lemmas we know \(G\) as a set of left actions on \(G_S\) is a subset of permutations on \(G_S\).
+
+\begin{theorem}[Weak Carley's theorem]
+Every group is a subgroup of (group of permutations of itself).
+\end{theorem}
+
+\textbf{This just means Permutations of \(G\) is too ``big!''}
+
+\begin{definition}[Left action and right action]
+Group \(G\), set \(S\). Group action \(G \times S \to S\) is a left action, \(S \times G \to \S\) is a right action. They all satisfy the properties of group action.
+\end{definition}
+
+\begin{proposition}[Left action isn't right action]
+Suppose we have left action \(G \times S \to S\), define right action \(S \times G \to S\) as follows:
+\[
+sg = gs = g(s).
+\]
+\end{proposition}
+
+\begin{proof}[ ]
+\leavevmode
+For \(g, h \in G\), we have :
+\begin{itemize}
+\item \(s(gh) = gh(s)\), by definition of the left action;
+\item \((sg)h = (g(s))h = h(g(s)) = hg(s)\), by definition of left action.
+Therefore we have \(s(gh) \neq (sg)h\), thus not a right action, since in general group isn't commute.
+\end{itemize}
+\end{proof}
+
+We use an example to observe this fact.
+
+First we introduce the cycle notation:
+
+\begin{definition}[Cycle notation]
+\((123)\) refers to \(1 \mapsto 2, 2 \mapsto 3, 3 \mapsto 1\).
+\end{definition}
+
+Then we have \((12)(123) \neq (123)(12)\).
+
+\begin{definition}[Abelian group]
+Group \(G\), if \(g, h \in G\), \(gh = hg\). Then \(G\) is called abelian or commutative.
+\end{definition}
+
+\begin{proposition}[Left action preserves right action]
+Group \(G\), set \(G_S\). For \(g, h \in G\), \(s \in G_S\). We have :
+\[
+g(sh) = (gs)h.
+\]
+Notice that we are abuse the notation a little bit.
+\end{proposition}
+
+\begin{proof}[ ]
+\leavevmode
+Suppose \(g(sh) = x\), \((gs)h = y\),
+\begin{itemize}
+\item \((sh) = g^{-1}x\);
+\item \(s = (g^{-1}x)h^{-1}\);
+\item By substitution we have, \((g((g^{-1}x)h^{-1}))h\);
+\item \((g((g^{-1}x)h^{-1}))h = (g((g^{-1}x)h^{-1}))h\);
+\end{itemize}
+This implies that generally we don't have the \(x = y\), but since \(s \in G_s\), \(g(sh)\) will be interpreted to multiplication. Thus \(x = y\) by associativity.
+\end{proof}
+
+\textbf{Since we have already prove that group action is a subgroup of group of permutations, therefore it is also a group. It is fair to guess that \(G =\) all symmetries(left action) of objects(\(G_S\)) with structure(Right action of \(G\) on \(G_S\)), here objects with structure simply means preserve the structure, i.e. preserve the right action.}
+
+\begin{theorem}[Carley's theorem]
+Every group \(G\) is isomorphic to a subgroup of a symmetric group.
+\end{theorem}
+
+\begin{proof}[Proof of Carley's theorem]
+\leavevmode
+Suppose \(f\) is symmetry of \(G_S\) preserves right action, for \(s \in G_S\), \(f(s) = f(1\circ s) = (f(1)) \circ s\), i.e. every symmetry becomes left action (i.e. \(f\) means multiply by \(f(1) \in G\), i.e. every symmetry is determined by how it change the position of identity.), since we also know every left action is a bijection thus a symmetry, therefore we prove ``all''.
+\end{proof}
+
+\textbf{All symmetries on some object equip with law of composition \(\Rightarrow\) Axioms of Group \(\Rightarrow\) Abstrct Group satisfies the group axioms \(\Rightarrow\) All symmetries of some object(\(G_S\)) with structure(right action). Therefore Group \(\Leftrightarrow\) Symmetry, i.e. every group is isomorphic to symmetric group of approciate object.}
+
+\textbf{Convention: Permutation and Symmetry groups.}
+\begin{itemize}
+\item For Symmetry we really mean bijection on a set;
+\item For Symmetric group we really mean group of all permutations, or group of all bijections on itself;
+\item Permutation group is always given with group action, a group act on itself will form a permutation group, with is the subgroup of symmetric group(All permutations/Bijections);
+\item For ``single'' permutation or bijection, they are the same.
+\end{itemize}
+
+\textbf{Conclusion: Carley think it is more useful to consider a group more abstrctly and sometimes consider it as the group of permutations.}
+
+To characterise the structure of the isomorphic group looks like, we can draw Carley's diagram, where you are given a original set of symmetries of some object, then you consider all the right action and draw the right action with different lines.
+
+\textbf{One interesting question is if every group is a symmetric group of some approciate object, why we can have many finite groups which isn't order of \(n!\)?}
+
+Informal answer: Because for mathematical object we have methematical structures which will force some symmetries to collapse.
+
+\begin{proposition}[8 natural ways of how Group acts on itself]
+\begin{center}
+\begin{tabular}{ccc}
+& Left Action \(g(s)\) & Right Action \((s)g\) \\
+Trivial Action & \(s\) & \(s\) \\
+Transitation & \(gs\) & \(sg\) \\
+& \(sg^{-1}\) & \(g^{-1}s\) \\
+Adjoint & \(gsg^{-1}\) & \(g^{-1}sg\)
+\end{tabular}
+\end{center}
+\end{proposition}
+\end{document}

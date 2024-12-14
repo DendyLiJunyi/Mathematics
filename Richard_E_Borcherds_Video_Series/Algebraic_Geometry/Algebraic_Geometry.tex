@@ -1,0 +1,51 @@
+% Created 2024-12-13 Fri 16:25
+% Intended LaTeX compiler: xelatex
+\documentclass[11pt]{article}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\input{~/Preamble/preamble.tex}
+\usepackage{pstricks}
+\usepackage{pst-func}
+\renewcommand{\figurename}{Fig.}
+\author{Richard E Borcherds}
+\date{\today}
+\title{Algebraic Geometry}
+\hypersetup{
+ pdfauthor={Richard E Borcherds},
+ pdftitle={Algebraic Geometry},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Notes taken by Dendy Jun Yi Li}, 
+ pdflang={English}}
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\begin{figure}[htbp]
+  \centering
+  \begin{pspicture*}(-4,-4)(4,4)
+  \psaxes[showorigin = false]{->}(0,0)(-3.5,-3.5)(3.5,3.5)[$x$,0][$y$,90]
+  \psplotImp[linewidth = 1pt, stepFactor=0.1, linecolor=red, algebraic](-4.1,-4.1)(4.1,4.1){y^2 - x^3 - x^2}
+  \psplot[algebraic]{-4.1}{4.1}{-(3/2) * x}
+  \psplot[algebraic]{-4.1}{4.1}{(3/2) * x}
+  \end{pspicture*}
+  \caption{$y^2 - x^3 - x^2$}
+\end{figure}
+
+\begin{figure}[htbp]
+  \centering
+  \begin{pspicture*}(-4,-4)(4,4)
+  \psaxes[showorigin = false]{->}(0,0)(-3.5,-3.5)(3.5,3.5)[$x$,0][$y$,90]
+  \psplotImp[linewidth = 1pt, stepFactor=0.1, linecolor=red, algebraic](-4.1,-4.1)(4.1,4.1){x^3 + y^3 - 9}
+  \psplot[algebraic]{-4.1}{4.1}{3 - x}
+  \psdots(1,2)(2,1)
+  \end{pspicture*}
+  \caption{$x^3 + y^3 = 1^3 + 2^3$}
+\end{figure}
+\end{document}

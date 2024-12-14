@@ -1,0 +1,8 @@
+#+title: \zallman Retrieve Algebra While Formalisation
+#+AUTHOR: Dendy LiJunyi
+#+CREATOR: Notes taken by Dendy Li
+
+#+LATEX_HEADER: \input{~/Preamble/preamble.tex}
+#+LATEX_COMPILER: xelatex
+
+* Group Theory

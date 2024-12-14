@@ -1,0 +1,37 @@
+#+title: Algebraic Geometry
+#+AUTHOR: Richard E Borcherds
+#+CREATOR: Notes taken by Dendy Jun Yi Li
+
+#+LATEX_HEADER: \input{~/Preamble/preamble.tex}
+#+LATEX_HEADER: \usepackage{pstricks}
+#+LATEX_HEADER: \usepackage{pst-func}
+#+LATEX_HEADER: \renewcommand{\figurename}{Fig.}
+#+LATEX_COMPILER: xelatex
+
+# It's just hard to use pstrick to plot the algebraic curves, I turn to Asymptote. Asymptote seems old and out of fashion, then final answer seems to be inkscape.
+
+# Okay, it looks like inkscape has too many features that no use to me. But pstrick has a package which can draw implicit functions and this is fantastic, which enable me to draw algebraic curves.
+
+* Lecture 1
+\begin{figure}[htbp]
+  \centering
+  \begin{pspicture*}(-4,-4)(4,4)
+  \psaxes[showorigin = false]{->}(0,0)(-3.5,-3.5)(3.5,3.5)[$x$,0][$y$,90]
+  \psplotImp[linewidth = 1pt, stepFactor=0.1, linecolor=red, algebraic](-4.1,-4.1)(4.1,4.1){y^2 - x^3 - x^2}
+  \psplot[algebraic]{-4.1}{4.1}{-(3/2) * x}
+  \psplot[algebraic]{-4.1}{4.1}{(3/2) * x}
+  \end{pspicture*}
+  \caption{$y^2 - x^3 - x^2$}
+\end{figure}
+
+* Lecture 2
+\begin{figure}[htbp]
+  \centering
+  \begin{pspicture*}(-4,-4)(4,4)
+  \psaxes[showorigin = false]{->}(0,0)(-3.5,-3.5)(3.5,3.5)[$x$,0][$y$,90]
+  \psplotImp[linewidth = 1pt, stepFactor=0.1, linecolor=red, algebraic](-4.1,-4.1)(4.1,4.1){x^3 + y^3 - 9}
+  \psplot[algebraic]{-4.1}{4.1}{3 - x}
+  \psdots(1,2)(2,1)
+  \end{pspicture*}
+  \caption{$x^3 + y^3 = 1^3 + 2^3$}
+\end{figure}

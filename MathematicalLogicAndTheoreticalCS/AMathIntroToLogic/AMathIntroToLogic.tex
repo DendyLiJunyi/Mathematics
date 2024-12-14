@@ -1,0 +1,494 @@
+% Created 2024-11-12 Tue 18:49
+% Intended LaTeX compiler: xelatex
+\documentclass[11pt]{article}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\input{~/Preamble/preamble.tex}
+\author{Herbert Enderton Notes taken by Dendy Li}
+\date{\today}
+\title{A Mathematical Introduction To Logic}
+\hypersetup{
+ pdfauthor={Herbert Enderton Notes taken by Dendy Li},
+ pdftitle={A Mathematical Introduction To Logic},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 29.3 (Org mode 9.7.11)}, 
+ pdflang={English}}
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\section{Sentential Logic}
+\label{sec:orgf8a340f}
+\subsection{Informal remarks on the basic objects}
+\label{sec:orga1cb7e1}
+
+\begin{center}\begin{tikzcd}
+& \text{Construction Sequence} & \\
+& \text{Wffs} \ar[u,"\text{Formula Building Operations}"] & \\
+& \text{Expressions} \ar[u,"\text{Inductive Definition}"] & \\
+& \text{Sequence} \ar[u] & \\
+\text{Sentential Connectives Symbols} \ar[ur] & \text{Sentence Symbols} \ar[u] & \text{Proposition Symbols} \ar[l]
+\end{tikzcd}\end{center}
+
+
+\begin{definition}[Sentential Connective Symbols]
+Sentential connective symbols is the symbols which have fixed translations.
+\end{definition}
+
+eg. We have five sentential connective symbols in sentential logic namely
+\begin{itemize}
+\item \(\neg\)
+\item Conjunction \(\land\)
+\item Disjunction \(\lor\)
+\item Implies \(\rightarrow\)
+\item Iff \(\leftrightarrow\)
+\end{itemize}
+
+\begin{definition}[Sentence Symbols]
+Sentence symbols are the symbols which doesn't fixed the translation.
+\end{definition}
+
+\textbf{Remark: We also have proposition symbols for some case we want the translation of them are propositions}
+
+\begin{definition}[Expressions]
+Expressions just finite sequence of symbols(both sentential connective symbols and sentence symbols).
+\end{definition}
+
+\textbf{Remark: In order to avoid the Russuell's Paradox we assume that no symbol is a finite sequence of symbols}
+
+\begin{definition}[Well Form Formula]
+Well form formulas are just Grammarly correct expressions. By Grammarly correct we means the inductive definition of the well form formula.
+\end{definition}
+
+\begin{proposition}[Inductive definition of wffs]
+All the wffs can only be obtained by the following rules
+\begin{itemize}
+\item Every sentence symbol is a wff
+\item If \(\alpha\) is a formula then \(\neg\alpha\) is a wff
+\item If \(\alpha, \beta\) are wffs then \(\alpha \circ \beta\) is a wff
+\end{itemize}
+Here \(\circ\) represents the other 4 sentential connectives we didn't mention above.
+\end{proposition}
+
+We will then define the formula building operations to show how wff is built up.
+
+\begin{definition}[Formula building operations]
+For wff \(\alpha,\beta\), formula building operation is defined as follows:
+\begin{itemize}
+\item \(\Epsilon_{\neg} (\alpha) = (\neg\alpha)\)
+\item \(\Epsilon_{\circ} (\alpha,\beta) = (\alpha \circ \beta)\)
+\end{itemize}
+Here \(\circ\) is one of the other 4 sentential connectives.
+\end{definition}
+
+\begin{definition}[Construction Sequence of a wff]
+The construction sequence of a wff \(\alpha\) is a sequence \(<a_1,\dots,\alpha>\), where every \(a_i\) is obtained by element in the front of \(a_i\) under the formula building operations.
+\end{definition}
+\subsection{Induction}
+\label{sec:orgc7e16e6}
+\textbf{Induction is a special type of construction, especially when we face the problem that the inductive defintion brings to us.}
+
+Here we have ``Universal'' progress on meta-strategy of how induction works:
+\textbf{Goal: Starting from a set \(U\), construct a subset of \(U\) satisfies certain properties.}
+
+\begin{center}\begin{tikzcd}
+\text{Initial elements} \ar[loop right, "\text{Construction operations}"] \ar[d] \\
+\text{Smallest set closed under the operations}
+\end{tikzcd}\end{center}
+
+\textbf{Remark: Every members in the ``Gerating Set'' can be build up from the initial elements by apply the construction operations. This also arise the interests to talk about the definition of free generation, namely whether the construction sequence is unique or not.}
+
+eg. We can have an easy understandable case where the initial elements are just the sentence symbols, the operations are formula building operations. In this case the set we generate is just the set of well-formed-formulas.
+
+Next we want to formally discuss this ``Smallest Set''. For convinient we use the following conventions:
+\begin{itemize}
+\item Initial set \(B \subseteq U\)
+\item Class of operations \(\mathcal{F}:=\{f,g\}\), where \(f:U \times U \to U, g: U \to U\).
+Notice that in a general case the class of operations should be infinite.
+\end{itemize}
+
+With the notation above we use a little more formal language to represent the process:
+
+WLOG suppose \(B\) contains points \(a,b\), then \(C\) will contain the elements in the form of:
+  \[
+  b, f(b,b), g(b), f(g(a)), \dots
+  \]
+
+Now we formally consider this problem since this construction process can be described by two ways:
+\begin{itemize}
+\item From bottom to the top(\(C_{\ast}\)): We define \(C_{\ast}\) to be the set generated by \(B\) with \(\mathcal{F}\). Here by generated we mean the generating process above.
+
+\item From top to the bottom(\(C^{\ast}\)):
+We define \(C^{\ast}\) to be the intersection of all subsets of \(B\) closed under the operations in \(\mathcal{F}\)
+
+\item We show these two sets are actually the same.
+\end{itemize}
+
+Here one might meet two definitions which is important:
+
+\begin{definition}[Closed under operations]
+Let \(S\) be a set closed under operations, then for any elements of \(S\), their interactive(combinition for all) image under those operations are contained in \(S\).
+\end{definition}
+
+\begin{definition}[Inductive Set]
+For initial set \(B\), we say a set \(S\) is inductive if:
+\begin{itemize}
+\item \(B \subseteq S\)
+\item \(S\) is closed under the given operation class.
+\end{itemize}
+\end{definition}
+
+By all the above conventions one can reach the following theorem:
+
+\begin{theorem}[ ]
+\(C^{\ast}\) = \(C_{\ast}\).
+\end{theorem}
+
+Now we can formally describe the induction principle:
+
+\begin{theorem}[Induction Principle]
+Let \(C\) is the set generated from \(B\) by the operations in \(\mathcal{F}\). For any set \(S\) lies between \(B,C\), with the assumption that it closed under operations in \(\mathcal{F}\), then \(S = C\).
+\end{theorem}
+\subsection{Recursion}
+\label{sec:org6162214}
+\subsubsection{Freely Generated Sets}
+\label{sec:org8685b4b}
+\textbf{Because one needs to define functions recursively over an inductive closure, the freely generated property allows us to unique reprsent the elements in the generated set by a tree.}
+
+eg. In the process of evaluating the expressions we first define a function which enables us to evaluate the atoms, the we recursively define the extension of the function to evaluate all expressions. By free generation we can make sure that the tree for the evaluation process for each expression is unique.
+
+\begin{definition}[Freely Generated Sets]
+
+\end{definition}
+\textbf{A problem we care about: How to recursively define a function?}
+Basically we need 3 functions
+\begin{itemize}
+\item g:= ``Push forward function''
+\item f:= ``Form of base case function''
+\item h:= ``Recursive defined function''
+\end{itemize}
+with few rules on how these functions are interacting with each other.
+\subsection{Compactness and Effectiveness}
+\label{sec:orgcf93293}
+\textbf{Convention: Let \(\Sigma\) denote a set of wffs.}
+\begin{theorem}[Compactness Theorem]
+\(\Sigma\) is satisfiable iff every finite subset of \(\Sigma\) is satisfiable.
+\end{theorem}
+
+\textbf{Remark: This theorem is called compactness theorem since it is kind of looks like the compactness defined in analysis.}
+
+\begin{definition}[Finitely satisfiable(Temporarily definiton)]
+\(\Sigma\) is finitely satisfiable iff every finite subset is satisfiable.
+\end{definition}
+
+
+\begin{proof}[Proof Sketch]
+\leavevmode
+
+\begin{itemize}
+\item we first use the given finitely satisfiable set to extend it to the maximal.
+\item Then we construct a truth assignment out of the maximal set we construct above to satisfies \(\Sigma\).
+\end{itemize}
+\end{proof}
+\section{First-Order Logic}
+\label{sec:orgfc04e4b}
+Propositional Logic is a basic model for us to formally express our informal mathematics. However, Propositional Logic can't describe the quatifiers, by adding the quatifiers and inherits some ideas of Propositional Logic, we have the first-order Logic, which allows us to formally talk about more mathematical structures.
+
+Some important features from the Chapter 1: Notice that \(\{\neg, \to\}\) is complete so we want out sentential connectives only include these two symbols. Also, notice that \(\exists = \neg \forall \neg\), we only want to include the universal quantifier.
+
+Getting familiar with some basic ideas of first-order logic:
+\begin{itemize}
+\item Socretes is a man, here ``is a man'' is a predicate.
+\item Metamathematics refers to the procedure of stepping back and examining what the mathematician is doing.
+\end{itemize}
+\subsection{First-order language}
+\label{sec:org01f5aae}
+\subsubsection{Expressions, Terms, Atomic Formulas and Well-formed formulas}
+\label{sec:org73a438d}
+\textbf{Assumption: we are given infinitely many distinct symbols as follows:}
+\begin{itemize}
+\item Logical Symbols
+\begin{itemize}
+\item Parentheses
+\item Sentential connective symbolsa
+\item Variables(countably many)
+\item Equality symbol(optional)
+\end{itemize}
+\item Parameters
+\begin{itemize}
+\item Quantifier symbol
+\item Predicate
+\item Function symbol
+\item Constant symbol(0-place function symbol)
+\end{itemize}
+\end{itemize}
+\textbf{Remark: All symbols appear here are all distinct, Logical Symbols and Parameters are determinated we say the language is been determinated.}
+
+\begin{proposition}[Distinctions between languages]
+Languages are only distinct in parameters and equalities.
+\end{proposition}
+
+Next we look at the language of set theory and the language of the elementary number theory to see why large mathematics can be embedded into set theory.
+
+\begin{align*}
+& \text{Language of set theory} && \text{Language of elementary number theory} \\
+& \text{Predicates : yes} &&  \text{Predicates : yes}\\
+& \text{Functions : no} &&  \text{Functions : yes}\\
+& \text{Constants : yes} && \text{Constants : yes}\\
+& \text{Equality : yes} && \text{Equality : yes}
+\end{align*}
+
+I omit the concrete type of the parameters here, but the reader can have a feeling that the language of set theory can somehow embed in the language of elementary number theory. Just like Group can be embed in a ring.
+
+We have the following informal expression about the statement above:
+Large mathematcis can be embedded into set theory because they can be expressed by set theory and mathematics theorem follow logically from the axioms of set theory.
+
+Here is a unintuitive phenomenon of first-order logic:
+eg.
+
+\begin{align*}
+\exists v_1 (Av_1 \land Bv_1) & \quad \text{There is an object } v_1, \text{ such that } v_1 \text{ is an apple and } v_1 \text{ is a bad apple.} \\
+\exists v_1 (Av_1 \to Bv_1) & \quad \text{There is an object } v_1, \text{ such that if } v_1 \text{ is an apple, then } v_1 \text{ is a bad apple.}
+\end{align*}
+
+The second formula is more asserting than the first formula, since the first formula will fail in the universe where there is no apple exists while the second formula still remaning true. (Because the second formula has the assumption if the object is an apple.)
+
+Few words which need a little declaration:
+\begin{itemize}
+\item nonsensical: no meaning
+\item assertion: confindent statement
+\item intend to: want to or plan to
+\end{itemize}
+
+\begin{definition}[Expression]
+An expression is a finite sequence of symbols.
+\end{definition}
+
+Not all the expressions have meaning, we might stick to some of the meaningful sentences-Terms, Atomic formulas, Well-formed formulas.
+
+We have the following correspondence:
+\begin{align}
+\text{Nouns and Pronouns} & \leftrightarrow \text{Terms} \\
+\text{Sentencial symbols} & \leftrightarrow \text{Atomic formulas}
+\end{align}
+
+\textbf{Comparing with the natural languages, we want the term to be the name of the objects and well-formed formulas to be the assertions.}
+
+Construction of meaningful expressions:
+\begin{itemize}
+\item Construction of terms
+\begin{itemize}
+\item For every function \(f\), there is an induced formula building operation \(\mathcal{F}_f\) where compound n variables into one term(for n-placed function symbol \(f\)).
+\item \textbf{Definition of the term:} Every term is of the form \(\mathcal{F}_f(\text{sequence of constant symbols or variables})\).
+\item One special case is that, there are no function symbol in the language, so the terms are just constant and variables.
+\item Syntax of the term:
+\begin{itemize}
+\item Polish notation
+\item No parentheses(Unique readability theorem ensure the well-define)
+\end{itemize}
+\end{itemize}
+
+\item Construction of Atomic formulas
+\begin{itemize}
+\item Atomic formulas aren't defined by induction, it's just a sequence starting with a n-placed predicate symbol follows by n terms.
+\end{itemize}
+
+\item Construction of Well-formed formulas
+\begin{itemize}
+\item Well-formed formulas are expressions which are built from the atomic formulas by the defined formula building operations on the expressions(For implication, negation, universal quantifiers).
+
+\textbf{Remark: Atomic Formulas are wffs.}
+\end{itemize}
+\end{itemize}
+\subsubsection{Free Variables}
+\label{sec:orgf9ad0f6}
+\textbf{In natural languages, the following examples express the idea of free variables:}
+\begin{align*}
+\forall v_2 \in v_2v_1 & \  \text{Every set is a number of (  )} \\
+(\neg\forall v_1(\neg \forall v_2 \in v_2v_1)) & \ \text{There is a set } v_1, v_1 \text{doesn't contain every } v_2 \text{ as a subset.}
+\end{align*}
+
+\textbf{Remark: Free variable just likes ``Blank'' in our everyday language, next we want to formally define what is a free variable since we don't want our definition relies on the translation in Natural language.}
+
+In order to directly define what is a free variable, we first define what does a variable occurs free in a given formula means, then a variable occus free is a free variable.
+
+\begin{definition}[Occur free]
+Let \(\phi,\varphi\) be wffs, \(\alpha\) is atomic formula:
+\begin{itemize}
+\item For atomic formula \(\alpha\), \(x\) occurs free in \(\alpha\);
+\item For formula \(\neg\varphi\), \(x\) occurs free in \(\neg\varphi\) iff \(x\) occurs free in \(\varphi\);
+\item For formula \(\varphi \to \phi\), \(x\) occurs free in \(\varphi \to \phi\) iff \(x\) occurs free in \(\varphi\) and \(\phi\);
+\item \(x\) occuts free in \(\forall y \varphi\) iff \(x \neq y\) and \(x\) occuts free in \(\varphi\).
+
+We say \(x\) is a free variable in formula \(\phi\) if \(x\) occurs free in \(\phi\).
+\end{itemize}
+\end{definition}
+
+\textbf{The definition above is valid because we can first define the occur free on atomic formulas and basic construction of atomic formulas, then by recursion theorem we can extend the definition on atomic formulas to wffs.}
+
+
+\begin{definition}[Sentence]
+A wff without any free variable is a sentence.
+\end{definition}
+\textbf{This definition is intuitively valid, since when we talk to each other we normally don't leave blank while talking.}
+\subsubsection{Conventions for readability of First order language}
+\label{sec:org4f78bac}
+In the definition of First order language, we don't use \(\land, \lor, \neq, \dots\), but this will make the formulas hard for us to read. We have the following convention:
+\begin{itemize}
+\item Negation and Universal quantifiers control the smallest formula next to it;
+\item Repeat expressions group to right.
+\end{itemize}
+\subsection{Truth and Models}
+\label{sec:org5ff405d}
+
+\begin{align*}
+& \text{Sentencial Logic} \Leftarrow \text{Truth assignment(Tell truth by the value)} \\
+& \text{First order Logic} \Leftarrow \text{Structure(Tell truth by checking the dictionary)}
+\end{align*}
+
+\textbf{Structure is a dictionary for us to check the interpretations of the formulas.}
+
+\begin{definition}[Structure]
+Structure is a function which can be described as follows:
+\begin{center}
+\begin{align*}
+\forall &\mapsto \lvert\mathfrak{A}\rvert \\
+\text{n-ary Predicate symbols} &\mapsto \text{Relations on } \lvert\mathfrak{A}\rvert^{n}\\
+\text{n-ary Function symbols} &\mapsto \text{Operations on} \lvert\mathfrak{A}\rvert^{n}\\
+\text{Constant symbols } c &\mapsto c^{\mathfrak{A}} \in \lvert\mathfrak{A}\rvert.
+\end{align*}
+\end{center}
+\end{definition}
+
+Here we recall a little bit about the definition of relation and operations to have a clear understanding of what does the structure \(\mathfrak{A}\) looks like.
+
+\begin{definition}[n-ary relation and n-ary operation]
+\(n\)-ary opertaion on \(A\) is a function:
+\[
+F:A^n \to A,
+\]
+where any subset of \(A^n\) is a \(n\)-ary relation on \(A\).
+\end{definition}
+
+One might want to ask: What's the difference between a function and a relation, we have the follow informal definition:
+\begin{definition}[Function]
+\(F\) is called a function if:
+\begin{itemize}
+\item \(F\) is a relation;
+\item No two distinct pairs in \(F\) have the same first coordinate.
+\end{itemize}
+\end{definition}
+
+\textbf{So a \(n\)-ary function is somehow a \(n+1\)-ary relation with additional property(first coordinate unrepeated).}
+
+Informally a structure \(\mathfrak{A}\) can be viewed as a set with different forms of elements. There are tuples to represent the relation, functions, there are ``Points'' to represent the universe where the constant symbols lies in.
+
+\textbf{Here we might remind myself a little bit on what's the relationship between the structure and the language. The structure plays the row of the truth assignment where the language is for how to write the grammarly correct sentences.}
+
+\begin{center}\begin{tikzcd}
+\text{Informal Mathematics} \ar[r,"embedded"] \ar[rd, swap,"Judge"] & \text{First order language of it}(L) \ar[r,"Produce"] & \text{Wffs} \ar[d,"Input"]\\
+ & \text{Informal statements}&\ar[l,"Interpretate"] \text{Structure of } L
+\end{tikzcd}\end{center}
+
+eg. In the first order language for set theory, take \(\mathfrak{A} = (\lvert\mathfrak{A}\rvert, \in^{\mathfrak{A}})\) where \(\lvert\mathfrak{A}\rvert:=\N\) and \(\in^{\mathfrak{A}}:=\{<m,n>| m < n, m,n \in \N\}\). Given a formula in first order language of set theory, we can translate it into the informal statement and use our knowledge about set theory to check whether the sentence is true or false. \textbf{If this sentence \(\varphi\) is true, we say the structure \(\mathfrak{A}\) is a model of \(varphi\).}
+
+\textbf{One little remark is the first order language of set theory doesn't mean the set theory we use in the informal mathematics, a first order language of set theory is any language equipped with a universe which has a contant symbol for empty set and a 2-ary predicate for inclusion.}
+
+One problem of the translation above is that we can't handle the truth of the self-reference sentences, like ``This sentence is false.''. This is the motivation for a formal definition of what do we mean by a sentence is true under the structure \(\mathfrak{A}\).
+\subsubsection{Define Truth by structure}
+\label{sec:org4a3d5a2}
+Like in sentential logic, we define the ``truth'' with respect to ``Truth Assignment''. Here ``Truth Assignment'' we simply mean a ``Translation in the Model''.
+\subsection{Deductive Calculus}
+\label{sec:org033c44d}
+\subsubsection{Formal Deductions}
+\label{sec:orgc68c25c}
+Basic ideas of deduction:
+\begin{center}\begin{tikzcd}
+\text{Axioms } + \text{Assertions} \ar[r] \ar[d] & \text{Theorems} \\
+\Lambda \cup \Gamma + \text{Deduction} \ar[r] & \text{Theorems}
+\end{tikzcd}\end{center}
+
+In the second line, a theorem is just a formula obtain from \(\Lambda \cup \Gamma\) by the rule of inference, which we call deduction here.
+
+
+\begin{definition}[Deduction]
+Let \(\Lambda\) be a set of infinitely many fomulars, we usually call it axioms. A deduction is a finite sequence of formulas s.t. every element in the sequence can be interfere by earlier ones or this element lies in the axioms or theorems.
+\end{definition}
+
+\begin{theorem}[Generalization Theorem]
+If \(\Gamma \vdash \varphi\) and \(\forall \alpha \in \Gamma, \ x \notin Free(\alpha)\), then we can add universal quantifier before formula \(\varphi\), namely:
+\[
+\Gamma \vdash \forall \ x \varphi.
+\]
+\end{theorem}
+
+\begin{definition}[Six groups of Logical axioms]
+The following are six groups of Logical axioms:
+\begin{itemize}
+\item Generalization of tautologies;
+\item Generalization of \(\forall x\alpha \to \alpha^x_t\), \(t\) is substitutable for \(x\) in \(\alpha\);
+\item Generalization of \(\forall x(\alpha \to \beta) \to (\forall x\alpha \to \forall x\beta)\);
+\item Generalization of \(\alpha \to \forall x\alpha\);
+\item Generalization of \(x = x\);
+\item Generalization of \(x = y \to (\alpha \to \alpha^{\prime}\), where \(\alpha^{\prime}\) obtained from \(\alpha\) by replacing \(x\) in 0 or more occurrences by \(y\).
+\end{itemize}
+\end{definition}
+
+Next we give some detailed consideration of the logical axioms above.
+\subsection{Completeness Theorem}
+\label{sec:orgfb9d66c}
+The completeness theorem can give us aan answer about the equivalence of \(\models\) and \(\vdash\). Then equivalence them will be given in two different theorems namely soundness theorem and completeness theorem.
+\subsubsection{Soundness theorem}
+\label{sec:orga7cfc8d}
+
+\begin{theorem}[Soundness theorem]
+If \(\Gamma \vdash \varphi\), then \(\Gamma \models \varphi\).
+\end{theorem}
+\subsubsection{Completeness theorem}
+\label{sec:org7e4169a}
+
+\begin{theorem}[Completeness theorem]
+If \(\Gamma \models \varphi\), then \(\Gamma \vdash \varphi\).
+\end{theorem}
+
+We will not follow Gödel's proof of the completeness theorem. We will use the Henkin Construction.
+
+Here's a sketch of how the proof goes:
+
+\begin{center}\begin{tikzcd}
+\Gamma \ar[r] \ar[d] \ar[rd] & \mathcal{L} \ar[d] \\
+\Gamma \cup \Theta \ar[r] \ar[d] & \mathcal{L}^{\prime} \ar[d] \\
+\Delta \ar[ru] \ar[rd] \ar[r] & A \ar[d]\\
+& A/E
+\end{tikzcd}\end{center}
+
+We fixed a countable language \(\mathcal{L}\) and a set of consistent formulas \(\Gamma\).
+\begin{itemize}
+\item Step-1: Extend the Language \(\call\) by adding countably infinite constant symbols, the set \(\Gamma\) still consistant in \(\call^{\prime}\);
+
+\item Step-2: Extend the set of consistant formulas by adding formulas of the form,
+\[
+  \neg\forall x \varphi \to \neg \varphi  ^{x}_{c},
+  \]
+which gives a enumeration of the formulas by the constant symbols we add. The new set of consistant formulas is still consistant in the new language \(\call^{\prime}\).
+
+\item Step-3: We further construct the set \(\Delta\) which contains \(\Gamma \cup \Theta\) as a subset and satisfies the property that if there's a deduction sequence in \(\Delta\) then we the formula is in \(\Delta\).
+
+\item Step-4: Let \(A\) to be the set of all terms from \(\call ^{\prime}\) then define an equivalence relation \(E\) on \(A\):
+\[
+  x \simeq y \text{ iff } (x = y) \in \Delta
+  \],
+check this is actually an congruence relation.
+
+\item Step-5: We create the structure which has domain \(A/E\), since \(E\) is a congruence relation we know that \(A/E\) is well-defined.
+
+\item Step-6: Check this is the structure we want to prove the completeness theorem.
+\end{itemize}
+\end{document}

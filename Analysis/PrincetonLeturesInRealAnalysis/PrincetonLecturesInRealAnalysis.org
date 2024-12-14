@@ -1,0 +1,84 @@
+#+title:\elzevier Princeton Lectures In Real Analysis
+#+AUTHOR: Elias M. Stein \\
+#+AUTHOR: Rami Shakarchi
+#+author: Notes taken by Dendy Li
+
+#+LATEX_HEADER: \input{~/Preamble/preamble.tex}
+#+LATEX_COMPILER: xelatex
+
+* Lebesgue Dominated Convergence Theorem
+#+ATTR_LATEX: :options [Dominated Convergence Theorem]
+#+BEGIN_definition
+If we have a sequence of measurable functions \(\{f_n\}\) converges to \(f\) a.e., if \(\lvert f_n \rvert \leq g\) this implies the absolute value of the difference of \(f_n - f\) tends to \(0\). As a consequence the integral of \(f_n\) tends to the integral of \(f\).
+#+END_definition
+
+** Almost everywhere
+#+ATTR_LATEX: :options [Almost everywhere equal]
+#+BEGIN_definition
+\(f,g\) defined on a set \(E\) are equal almost everywhere, we write
+\[
+f(x) = g(x) \ \text{a.e. } x\in E,
+\]
+If the measure of the set which consists of the point \(p\) where \(f(p) \neq g(p)\) has measure zero.
+#+END_definition
+# F3 for next search result and Shift F3 for previous search result
+# Enter and Shift Enter also works
+
+#+ATTR_LATEX: :options [Almost everywhere convergence]
+#+BEGIN_definition
+We say a sequence of functions \(\{f_n\}\) converges almost everywhere to \(f\) on set \(E\) if:
+\[
+\{x\in E | \{f_n(x)\} \nrightarrow f(x)\}
+\]
+has measure \(0\).
+#+END_definition
+*Remark:*
++ *a.e. = a.s. = p.a.e(Pointwise almost everywhere)*
++ *Pointwise converges doesn't implies the measure, it just says that on every point of the domain we care, the corresponding sequence converges.*
+
+#+ATTR_LATEX: :options [Measurable Function]
+#+BEGIN_definition
+A function \(f\) on \(\R^d\) is measurable if for every \(a \in \R\):
+\[
+\{x \in \R^d \vert f(x) < a\}
+\]
+is measurable.
+#+END_definition
+
+To find some intuitive examples to this definition of measurable funcitons, characteristic functions and step functions(simple functions) will be our choices.
+
+** Integration
+
+* Littlewood's Three Principle
+#+ATTR_LATEX: :options [Littlewood's principle]
+#+BEGIN_theorem
+\leavevmode
++ Every measurable function is almost continuous(Lusin);
++ Every measurable set is almost a finite union of intervals;
++ Every converges sequence is almost uniformly converges(Egorov Theorem).
+#+END_theorem
+
+* Egorov Theorem
+#+ATTR_LATEX: :options [Egorov Theorem]
+#+BEGIN_definition
+Suppose we have a sequence of measurable functions defined on set \(E\) with \(m(E)\) is finite. Assume the sequence of measurable functions converges to some function \(f\) a.e. on \(E\). Given a \(\epsilon\), we can find a closed subset \(A_{\epsilon}\) of \(E\) s.t. \(A_{\epsilon}\) is differ from \(E\) with a set which has measure \(\epsilon\) and converges becomes uniform converges on this closed set.
+#+END_definition
+
+# When I write these text, I was convinced that mathematics isn't linear. The really important way of learning mathematics is that you meet a definition, you try to understand every definition and every proposition related to this definition, you build up a construction tree, then you got the idea, then you understand.
+
+# I try to use the backwards way the fill up the gaps.
+
+# BTW this also echoes the method in How to reading a book, which states that you focused on the things interesting you.
+
+** Measurable Functions
+The definition of measurable functions is a progressive definition, we first look at the simple function.
+
+#+ATTR_LATEX: :options [Finite-value function is measurable]
+#+BEGIN_definition
+A finite-value function is measurable iff preimage of any openset \(O\) is measurable iff preimage of any closed set \(F\) is measurable.
+#+END_definition
+*Remark: We use \(F\) to declare the closed sets since fermé.*
+
+* L-p space
+** L-1 space
+*Motivation: Integrable functions form a vector space which is complete under p-norm.*

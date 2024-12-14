@@ -1,0 +1,91 @@
+% Created 2024-11-07 Thu 11:45
+% Intended LaTeX compiler: xelatex
+\documentclass[11pt]{article}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\input{~/Preamble/preamble.tex}
+\author{Elias M. Stein \\
+Rami Shakarchi Notes taken by Dendy Li}
+\date{\today}
+\title{\elzevier Princeton Lectures In Real Analysis}
+\hypersetup{
+ pdfauthor={Elias M. Stein \\
+Rami Shakarchi Notes taken by Dendy Li},
+ pdftitle={\elzevier Princeton Lectures In Real Analysis},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 29.3 (Org mode 9.7.11)}, 
+ pdflang={English}}
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\section{Lebesgue Dominated Convergence Theorem}
+\label{sec:org82b0a70}
+\begin{definition}[Dominated Convergence Theorem]
+If we have a sequence of measurable functions \(\{f_n\}\) converges to \(f\) a.e., if \(\lvert f_n \rvert \leq g\) this implies the absolute value of the difference of \(f_n - f\) tends to \(0\). As a consequence the integral of \(f_n\) tends to the integral of \(f\).
+\end{definition}
+\subsection{Almost everywhere}
+\label{sec:orgd49cad9}
+\begin{definition}[Almost everywhere equal]
+\(f,g\) defined on a set \(E\) are equal almost everywhere, we write
+\[
+f(x) = g(x) \ \text{a.e. } x\in E,
+\]
+If the measure of the set which consists of the point \(p\) where \(f(p) \neq g(p)\) has measure zero.
+\end{definition}
+
+\begin{definition}[Almost everywhere convergence]
+We say a sequence of functions \(\{f_n\}\) converges almost everywhere to \(f\) on set \(E\) if:
+\[
+\{x\in E | \{f_n(x)\} \nrightarrow f(x)\}
+\]
+has measure \(0\).
+\end{definition}
+\textbf{Remark:}
+\begin{itemize}
+\item \textbf{a.e. = a.s. = p.a.e(Pointwise almost everywhere)}
+\item \textbf{Pointwise converges doesn't implies the measure, it just says that on every point of the domain we care, the corresponding sequence converges.}
+\end{itemize}
+
+\begin{definition}[Measurable Function]
+A function \(f\) on \(\R^d\) is measurable if for every \(a \in \R\):
+\[
+\{x \in \R^d \vert f(x) < a\}
+\]
+is measurable.
+\end{definition}
+
+To find some intuitive examples to this definition of measurable funcitons, characteristic functions and step functions(simple functions) will be our choices.
+\subsection{Integration}
+\label{sec:org385b031}
+\section{Littlewood's Three Principle}
+\label{sec:org31385d4}
+\begin{theorem}[Littlewood's principle]
+\leavevmode
+\begin{itemize}
+\item Every measurable function is almost continuous(Lusin);
+\item Every measurable set is almost a finite union of intervals;
+\item Every converges sequence is almost uniformly converges(Egorov Theorem).
+\end{itemize}
+\end{theorem}
+\section{Egorov Theorem}
+\label{sec:org47ffd19}
+\begin{definition}[Egorov Theorem]
+Suppose we have a sequence of measurable functions defined on set \(E\) with \(m(E)\) is finite. Assume the sequence of measurable functions converges to some function \(f\) a.e. on \(E\). Given a \(\epsilon\), we can find a closed subset \(A_{\epsilon}\) of \(E\) s.t. \(A_{\epsilon}\) is differ from \(E\) with a set which has measure \(\epsilon\) and converges becomes uniform converges on this closed set.
+\end{definition}
+\subsection{Measurable Functions}
+\label{sec:org69f2e12}
+The definition of measurable functions is a progressive definition, we first look at the simple function.
+
+\begin{definition}[Finite-value function is measurable]
+A finite-value function is measurable iff preimage of any openset \(O\) is measurable iff preimage of any closed set \(F\) is measurable.
+\end{definition}
+\textbf{Remark: We use \(F\) to declare the closed sets since fermé.}
+\end{document}

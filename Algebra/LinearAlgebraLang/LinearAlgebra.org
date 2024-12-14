@@ -1,0 +1,128 @@
+#+title: \elzevier Linear Algebra
+#+AUTHOR: Serge Lang
+#+CREATOR: Notes taken by Dendy Li
+
+#+LATEX_HEADER: \input{~/Preamble/preamble.tex}
+#+LATEX_COMPILER: xelatex
+
+* Vector Spaces
+#+ATTR_LATEX: :options [Vector Space]
+#+BEGIN_definition
+For field \( K \), \( K \)- vector space \( V \) is a set of objects closed under "addition" and "multiplication", where these two composition laws are connected by distribution law in the natural sense. Moreover both additive identity and multiplicative identity exist. \(\forall x \in V\), \( x \) has a additive inverse but doesn't have a multiplicative inverse. \(\forall c \in K, x \in V\), composition law between \(c\) and \(x\), is just the scalar product in the natural sense. We call \( V \) the vector space over \(K\).
+#+END_definition
+
+* Sum, direct sum, product of vector spaces
+*For convention we denote the vector space in preliminary w.r.t. \(V,W\), the field \(F\).*
+
+#+ATTR_LATEX: :options [Sum of vector spaces]
+#+BEGIN_definition
+The sum of vector space \(V,W\) is defined as follows:
+\[
+V + W := \{v + w\vert v\in V, w\in W\}.
+\]
+#+END_definition
+
+#+ATTR_LATEX: :options [Direct Sum of vector spaces]
+#+BEGIN_definition
+The direct sum of vector spaces \(V,W\) is defined as follows:
+\[
+V \oplus W := \{v + w\vert v\in V, w\in W\}.
+\]
+where \(V \cap W = \emptyset\).
+#+END_definition
+
+Unlike the definition of direct sum and sum of vector spaces relies on the operation are the same in the two vector spaces(Namely \(V,W\) are all subspaces in this case). We have a more general convetion of this progcess.
+
+#+ATTR_LATEX: :options [Direct Product of vector spaces]
+#+BEGIN_definition
+We define the direct product of \(V,W\) as follows:
+\[
+V \times W := \{(v,w)\vert v\in V, w\in W\}
+\]
+we don't need \(V,W\) to be the subspaces(Namely has same operation).
+#+END_definition
+
+* Linear Mappings
+** Linear Mappings
+
+** Kernel and Image
+
+* Bilinear maps and its relation to Matrices
+*For convention let \(K\) be field, which can also be seen as one-dimensional vector space over itself. \(U, V, W\) to denote the \(K\)-vector spaces.*
+
+
+#+ATTR_LATEX: :options [Bilinear Map]
+#+BEGIN_definition
+Let \(g:U\times V \to W\) be a map. \(g\) is a bilinear map if \(\forall v\in V\), \(g_v:= g(u,v): U\to W\) is a linear map; \(\forall u\in U\), \(g_u:= g(u,v): V\to W\) is a linear map. We say \(g\) is a Bilinear map.
+#+END_definition
+
+We have an important theorem to characteristic the relationship between a bilinear map \(g\) and a matrix \(A\).
+
+#+ATTR_LATEX: :options [Corresponding Theorem of bilinear map and matrix]
+#+BEGIN_theorem
+Given a bilinear map \(g: K^m \times K^n \to K\), then exists a unique \(A\in \mathbb{K}^{m\times n}\), s.t.
+\[
+g(x,y) = x^T A y, \ \forall x \in K^m, y \in K^n.
+\]
+#+END_theorem
+
+#+ATTR_LATEX: :options [ ]
+#+BEGIN_proposition
+Let \(Bli(K^m, K^n):= \{g\vert g:K^m \to K^n, g \ \text{is bilinear}\}\). Then \(Bli(K^m, K^n)\) is a \(K\)-vector space.
+#+END_proposition
+
+The next theorem give a correspondence between space of bilinear maps and matrix, which is a baby-case to illustrate the universal property of tensor product.
+
+#+ATTR_LATEX: :options [Isomorphism theorem of Bilinear Maps]
+#+BEGIN_theorem
+\(Bli(K^m, K^n) \simeq Mat_{m\times n}(K)\).
+#+END_theorem
+
+We also have the following commutative diagram:
+\begin{center}\begin{tikzcd}
+K^m \times K^n \ar[r] \ar[d] & Bli(K^m, K^n) \\
+Mat_{m\times n} \ar[ru]
+\end{tikzcd}\end{center}
+
+* Dual Space and Scalar Product
+
+#+ATTR_LATEX: :options [Dual Space]
+#+BEGIN_definition
+Let \(V^{\ast}:= \L(V,K)\), we call \(V^{\ast}\) the dual space of \(V\).
+#+END_definition
+
+*Remark: We call the elements in the dual space functionals.*
+
+#+ATTR_LATEX: :options [ ]
+#+BEGIN_proposition
+Let \(V\) be a \(K\)-vector space of dimension \(n\), then
+\[
+V \simeq K^n
+\]
+#+END_proposition
+
+With the above proposition we know that: Once the basis of the vector space \(B_V\) is given, we can associate \(v \in V\) to \(w \in K^n\), by the isomorphism.
+
+*Motivation: Now we substitute the isomorphism result into the definition of the dual space. Because in this way it is easier to express the morphisms.*
+
+We consider the following commutative diagram:
+
+\begin{center}\begin{tikzcd}
+K^n \ar[r, "\text{iso.}"] \ar[dr, dashed, "\varphi"] & V \ar[d] \\
+& K
+\end{tikzcd}\end{center}
+
+This diagram arise the isomorphism:
+\[
+K^n \to \L(V,K), \ A \mapsto L_A
+\]
+
+Then we have the following result:
+#+ATTR_LATEX: :options [ ]
+#+BEGIN_proposition
+\[
+\dim(V) = \dim(V^{\ast}).
+\]
+#+END_proposition
+
+We can look at few examples to get familiar with elements in the dual space.

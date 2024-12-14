@@ -1,0 +1,526 @@
+% Created 2024-11-12 Tue 23:09
+% Intended LaTeX compiler: xelatex
+\documentclass[11pt]{article}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\input{~/Preamble/preamble.tex}
+\author{Sheldon Axler \\
+Notes taken by Dendy Li}
+\date{\today}
+\title{\elzevier Measure Integration and Real Analysis}
+\hypersetup{
+ pdfauthor={Sheldon Axler \\
+Notes taken by Dendy Li},
+ pdftitle={\elzevier Measure Integration and Real Analysis},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Notes taken by Dendy Li}, 
+ pdflang={English}}
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\section{Supplement of Measure, Integration and Real Analysis}
+\label{sec:org46e16f4}
+
+\subsection{Sequencial Limit and Continuity of Functions}
+\label{sec:orgbcb1daf}
+\subsubsection{Continuity and Uniform Continuity}
+\label{sec:org69cc042}
+\textbf{General Convention: \(A \subseteq \R^m\)}
+
+A good way to understand the continuity in place of the Epsilon-Delta language is to consider the sequeces limit. We have the relavant result here:
+
+\begin{proposition}[Continuity via sequences]
+Let \(f: A \to \R^n\) be a function. \(f\) is continuous at \(b\) iff every sequece \(\{a_k\}\) in \(A\) where \(\lim a_k = b\), then \(\lim f(a_k) = f(b)\).
+\end{proposition}
+
+Every sequence converges to some point in the domain, then the corresponding sequence in range converges to the corresponding point w.r.t. the limit point in the domain.
+\subsubsection{Maximum and Minimum}
+\label{sec:org3fb5d02}
+\begin{definition}[Maximum and Minimum]
+For a set \(A\) given an order. \(\max A\) defined to be the ``Greatest'' element in the set \(A\); \(\min A\) defined to be the ``Smallest'' element in the set \(A\) w.r.t. the order.
+\end{definition}
+
+\textbf{Remark: Defference between \(\sup A\) and \(\max A\)}
+
+Informally, \(\max A\) is the greatest element in the set where \(\sup A\) is the element which \(\max A\) want to become(It may become or might not).
+
+\begin{proposition}[ ]
+Let \(A \subset \mathbb{R}^{m}\) be a closed and bounded set, \(f\) is a contunuous function on \(A\), then \(\max_A f, \min_A f\) exist.
+\end{proposition}
+
+\begin{proof}[Proof Sketch]
+\leavevmode
+\begin{itemize}
+\item Showing \(\min_A f\) is the same as to show \(\max_A -f\). WLOG we only need to show one.
+\item Use closed and \(f\) continuous to show \(\max_A f\) exists.
+\item Use bounded to show we can take \(\max_A f\).
+\end{itemize}
+\end{proof}
+
+\begin{definition}[Image]
+Let \(A, B\) be sets, \(f:A\to B\) a function. If \(C \subseteq A\), then \(f(C) := \{f(x) \vert x \in C\}\) is the image of \(C\) under \(f\).
+\end{definition}
+
+\begin{proposition}[Image of closed and bounded set under continuous function is still closed and bounded]
+Let \(A\) be a closed and bounded set of \(\mathbb{R}^{n}\), \(f: A \to \mathbb{R}^{n}\) is a continuous function. Then \(f(A)\) is a closed and bounded set of \(\mathbb{R}^{n}\).
+\end{proposition}
+
+\begin{proof}[Proof Sketch]
+\leavevmode
+\begin{itemize}
+\item To show closed we show every sequecial limit lies in the set.
+\item To show bounded we show we can take max and min.
+\end{itemize}
+\end{proof}
+\section{Recall of Riemann Integration}
+\label{sec:orgdf228c8}
+\subsection{Basic idea of Riemann Integration}
+\label{sec:orge1b29eb}
+\begin{itemize}
+\item Partition of \([a,b]\): Turn \([a,b]\) into closed subintervals with ``matched head and tail''.
+
+\item Lower and upper Riemann sums: Once we have the partition and the notation of inf and sup of a function on some interval. We use inf to construct Riemann lower sum and sup for Riemann upper sum.
+
+\item Few facts for us to continue:
+\begin{itemize}
+\item When partition goes finer, Upper sum goes smaller and lower sum goes larger.
+\item Riemann upper sum \(\geq\) Riemann lower sum
+\end{itemize}
+
+\item Define the Lower and upper riemann integrals repectively.(Forall Partition define sup Lower sum to be the lower Riemann integral and inf upper sum to be the upper riemann integral)
+
+\item Then it's natrual to define Riemann integral as follows:
+\end{itemize}
+
+\begin{definition}[Riemann integrable and Riemann integral]
+A bounded function on a closed and bounded interval is Riemann integrable if its lower Riemann integral = upper Riemann integral and we use the notation
+\[
+\int^b_a f = \text{Lower integral} = \text{upper integral}
+\]
+where \(f:[a,b] \to \R\).
+\end{definition}
+\subsection{Basic Results of Riemann integral}
+\label{sec:org842b607}
+\begin{proposition}[ ]
+Continuous real-valued function on closed bounded interval is Riemann integrable.
+\end{proposition}
+\subsection{Problems of Riemann integral}
+\label{sec:org343bb29}
+\begin{itemize}
+\item Some functions want it to be integrable but not Riemann integrable.
+\item Interchanging sum and limit
+\end{itemize}
+\section{Outer Measure on R}
+\label{sec:org48c4386}
+\textbf{Different from the class, professor Tran use total measure to start, let's see what's the different.}
+
+Motivation: We want to extend the class of integrable functions, which means we want to do integral on a more complicated intervals.
+
+Now it comes to the basic idea: We need to associate a ``size'' to subsets of \(\R\).
+
+Therefore we start with the basic ideas observed from the Riemann integral.
+
+\begin{definition}[Length of open interval]
+We defined the length of the interval to be the ``Norm of the end point difference''.
+\end{definition}
+
+Another non trivial observation is: if we represent an interval by a union of sequence of subsets, then length of this sequence = \(\Sigma\) length of every element in the sequence \(\leq\) length of the considered interval.
+
+This arise the definition of the outer measure:
+
+\begin{definition}[Outer measure]
+Given \(A \subset \R\), we define the outer measure of \(A\) as follows:
+\[
+\vert A \vert = \inf \{\Sigma l(I_k) \vert I_ks \text{are open intervals}, A\subseteq \Cup I_k\}.
+\]
+\end{definition}
+
+\textbf{Remark: We make a claim about the infinite sum, that is if some of the component in the sequence becomes \(\infty\), we say the sum is \(\infty\); if not this case, we consider the infinite sum as the limit of the increasing sequence sum(Since the length of the set is positive).}
+\subsection{What is good about outer measure?}
+\label{sec:org250af30}
+\begin{proposition}[ ]
+Every countable subset of \(\R\) has outer measure 0.
+\end{proposition}
+
+\begin{proof}[Proof Sketch]
+\leavevmode
+
+This basically because that the outer measure can shrink w.r.t. the ``construction.''
+\end{proof}
+
+eg. Suppose we have a countable set \(\{a_1,\dots,a_n\}\), for every element \(a_i\) we can find an interval \((a_i - \epsilon, a_i + \epsilon\), which covers the elements. The freedom the outer measure gives us is that we are allowed to change the value of the \(\epsilon\) to form an \(\epsilon\) sequence. By doing this we can ``set'' the measure of countable sets arbitrarily small.
+
+\begin{proposition}[Outer measure preserves the order w.r.t. subset relation]
+\(A,B\subseteq \R, A\subseteq B\). Then \(\vert A \vert \leq \vert B \vert\).
+\end{proposition}
+
+
+Translation is a geometric definition, It's always good to have the shape or size of the object we talk about somehow stay invariant under the translation.
+
+\begin{definition}[Translation]
+For \(t \in \R, A \in \R\), the translation \(t + A\) defined as follows:
+\[
+t + A := \{t + a \vert a \in A\},
+\]
+where this is just the definition for the coset.
+\end{definition}
+
+\begin{proposition}[Outer measure is translation invariant]
+\(t \in \R, A \subseteq \R\), then \(\vert A \vert = \vert t + A \vert\).
+\end{proposition}
+
+\begin{proposition}[Countable subadditivity of outer measure]
+Sum(Union) \(\le\) Sum(Sum).
+\end{proposition}
+\subsection{Outer measure of closed bounded interval}
+\label{sec:org8b52ff1}
+Next we focused on the always fansinating interval-closed an bounded interval. We have the following result:
+\begin{proposition}[ ]
+For \(a,b \in \R, a < b\), we have:
+\[
+\vert [a,b] \vert = b - a.
+\]
+\end{proposition}
+
+\begin{definition}[Open cover; finite subcover of A]
+Let \(A \subseteq \R\), we have the following convention:
+\begin{itemize}
+\item Collection \(\mathcal{C}\) is a open cover of \(A\) if every set of \(\mathcal{C}\) is an open set and \(A \subset \Cup \mathcal{C}\).
+
+\item Cover \(\mathcal{C}\) have a subcover \(\mathcal{C}_s\) of \(A\), if \(\mathcal{C}_s\) is a cover of \(A\), also a subset of \(\mathcal{C}\).
+\end{itemize}
+\end{definition}
+
+Now we come to a very important result:
+\begin{theorem}[Heine-Borel Theorem]
+In \(\R\), every open cover of a closed and bounded set in \(\R\) has a finite subcover.
+\end{theorem}
+
+\begin{proof}[Proof Sketch]
+\leavevmode
+\begin{itemize}
+\item \(\vert [a,b] \vert \ge b - a\)
+\item \(\vert [a,b] \vert \le b - a\)
+\end{itemize}
+\end{proof}
+
+Next is a result about the natural intuition on the intervals in \(\R\), which is also a corollary of the Heine-Borel theorem.
+
+\begin{proposition}[Non trivial intervals are uncountable]
+Every intervals in \(\R\) has two distinct elements are uncountable.
+\end{proposition}
+\subsection{Problems on outer measure}
+\label{sec:org9248923}
+\textbf{The main porblems on outer measure is that the outer measure isn't additive, it is subadditive.}
+
+\begin{proposition}[Nonadditivity of outer measure]
+Disjoint subsets \(A,B\subseteq \R\) doesn't satify the following identity:
+\[
+\vert A \cup B \vert \neq \vert A \vert + \vert B \vert.
+\]
+\end{proposition}
+
+The proof isn't very trivial and also involves the AC. But in class I remember that prof. Tran has given a hint on not using AC, need to be clear.
+\section{Measurable Spaces and Functions}
+\label{sec:orgd41ff58}
+\textbf{In this chapter we modified the definition of the non-additivity of outer measure and try to works with the ``better notation''\(\sigma\)-algebra.}
+\subsection{sigma algebra and measurable space}
+\label{sec:orgebf4dee}
+The motivation question is that: Can we simply force outer measure to hace additivity by change the notation and adding this rules?
+
+Notice we have the following proposition:
+
+\begin{proposition}[Nonexistence of such notation to all subsets of \(\R\)]
+The following properties can't exist for some function \(\mu\) at the same time:
+\begin{itemize}
+\item \(\mu:P(\R) \to [0,\infty]\)
+\item For all interval \(I\) of \(\R\), \(\mu(I) = length(I)\).
+\item Countable additivity
+\item Translation invariant
+\end{itemize}
+\end{proposition}
+
+We need to do some choice to weaker the notion above. But it seems like the only reasonable way to do it just don't define \(\mu\) on \(P\R\). Thus we have the notion of \(\sigma\)-algebra.
+
+\begin{definition}[\(\sigma\)-algebra]
+Let \(X\) be a set and \(S\) be a set of subsets of \(X\). \(S\) is a \(\sigma\)-algebra if it satisfies the following properties:
+\begin{itemize}
+\item \(\emptyset \in S\);
+\item closed under complement;
+\item closed under countable union.
+\end{itemize}
+\end{definition}
+
+
+\textbf{Remark:}
+\begin{itemize}
+\item \textbf{Here \(P(\R)\) denote the power set of \(\R\).}
+\item \textbf{By D'Morgan law, one can easily deduce that \(\sigma\)-algebra is closed under countable intersection.}
+\end{itemize}
+
+
+With the notation given above, we simply want the elements in \(\sigma\)-algebra to be the elements which can be measurable and in this convention we want this notation works well with other notations.
+
+\begin{definition}[Measurable space and measurable set]
+\begin{itemize}
+\item Measurable space is a set \(X\) with \(\sigma\)-algebra \(S\) on. this set being declared.
+\item \(U \in S\) is called an \(S\)-measurable set.
+\end{itemize}
+\end{definition}
+\subsection{Borel Subsets of R}
+\label{sec:org6edaa26}
+
+\begin{definition}[Top-Down definition of \(\sigma\)-algebra generated by a set of sets]
+Let \(X\) be a set \(\A\) is a set of subsets of \(X\). Then the \(\sigma\)-algebra generated by \(X\) is the intersection of all \(\sigma\)-algebra on \(X\) containing \(\A\).
+\end{definition}
+
+\textbf{Remark: Since the power set of \(X\) is a \(\sigma\)-algebra, so such intersection is valid.}
+
+\begin{definition}[Borel set]
+The \(\sigma\)-algebra generated by all open subsets of \(\R\) is called the Borel algebra. An element of Borel algebra is called the Borel set.
+\end{definition}
+
+Since every one sets of \(\R\) is is the union of a sequence of open intervals, the defintion of Borel algebra can be modified a little bit to ``generated by all open intervals''.
+
+\textbf{Examples of Borerl sets:}
+\begin{itemize}
+\item Directly by definition of \(\sigma\)-algebra:
+\begin{itemize}
+\item Every closed subset of \(\R\).
+\item Every countable subset of \(\R\).
+\end{itemize}
+\item Representation by countable union:
+\begin{itemize}
+\item Every half-open interval.
+\item Set of continuous points of a function on \(\R\).
+\end{itemize}
+\end{itemize}
+
+\textbf{Here we meet a question: \(a\) doesn't lies in any of the intervals in the intersection of the intervals, how can \([a,b] = \cap^{\infty}_{k = 1}(a-\frac{1}{k}, b\).}
+
+Oh I look at the condition wrong, it is \(a-\frac{1}{k}\) not \(a + \frac{1}{k}\). Limit notation and the inclusion relationship still doesn't change.
+
+\begin{definition}[Inverse image]
+Let \(f:X \to Y\) is a function, \(A\subseteq Y\), then define:
+\[
+f^{-1}(A) := \{x \in X \vert f(x) \in A\}.
+\]
+\end{definition}
+
+\begin{proposition}[Algerba of inverse image]
+Let \(f:X \to Y\) is a function, we have the following properties:
+\begin{itemize}
+\item Inverse image intersect with $\backslash$.
+\item Inverse image intersect with union.
+\item Inverse image intersect with intersection.
+\end{itemize}
+\end{proposition}
+
+\begin{proposition}[Inverse image of a composition]
+Let \(g,f\) be functions satitfies the condition of composition, \(A\) is a subset of the image of the composition. Then we have the following identity:
+\[
+(g \circ f)^{-1}(A) = f^{-1}(g^{-1}(A))
+\]
+\end{proposition}
+
+Now we come to an important notation: Measurable function.
+
+\textbf{If we can define measurable function here, why we still need lebesgue measure in order to do the integration?}
+
+\begin{definition}[Measurable function]
+Let \((X,S)\) be a measurable space, \(B\) a borel set. \(f:X \to \R\) is measurable(When \(S\) is clear from the text) if
+\[
+f^{-1} (B) \in S.
+\]
+\end{definition}
+
+\begin{definition}[Characteristic function]
+Characteristic function of a set \(E\), is a ``Mark'', tells you an element in \(E\) with output \(1\), and not in \(E\) with output \(0\).
+\end{definition}
+
+Characteristic function of \(E\) has an interesting property to express the sets related to \(E\), we express it by the following proposition:
+
+\begin{proposition}[Inverse image of characteristic funcion]
+Let \(B\subseteq \R\), then one of the following case stands for \(\chi_E^{-1} (B)\):
+\begin{itemize}
+\item \(E \ 1 \in B, 0 \notin B\);
+\item \(X \ 1 \in B, 0 \in B\);
+\item \(X / E \ 1 notin B, 0 \in B\);
+\item \(\emptyset \ 1 \notin B, 0 \notin B\).
+\end{itemize}
+\end{proposition}
+
+\begin{proposition}[ ]
+\(\chi_E\) is a measurable function iff \(E \in S\).
+\end{proposition}
+
+\begin{proposition}[Measurable function]
+By the convention we use, \(f:X \to \R\) is a function, s.t.
+\[
+f^{-1} ((a,\infty)) \ \in S \ \forall a \in \R
+\]
+Then \(f\) is measurable.
+\end{proposition}
+
+\textbf{This proposition is useful to show some function defined on a borel subset is measurable.}
+
+\begin{proof}[Proof Sketch]
+\leavevmode
+
+We check the definition of measurable function to prove the result.
+
+We can modify a little bit to show that every borel set can be represented by \((a,\infty)\) and the set contains all such interval is a sigma algebra(Then we prove this is actually the borel algebra).
+\end{proof}
+
+By restricting the definition of measurable function to borel subset of \(\R\), we have the following convention:
+
+\begin{definition}[Borel measurable function]
+Let \(X \subseteq \R\), \(B\) is any borel subset of \(\R\). \(f:X \to \R\) is borel measurable if
+\[
+f^{-1}(B) \in S.
+\]
+\end{definition}
+
+\textbf{To judge a function is \(S\)- measurable or not we only look at if the inverse image of borel set lies in \(S\) or not.}
+
+\begin{proposition}[Continuous functions are borel measurable]
+Let \(B\) be a borel subset of \(\R\), then \(f:B \to \R\) is a borel measurable function if \(f\) is a continuous funcion.
+\end{proposition}
+
+\begin{definition}[Increasing function]
+Let \(X \subseteq \R\), \(f:X \to \R\):
+\begin{itemize}
+\item \(f\) strictly increasing if \(f(x) < f(y)\) for all \(x < y\).
+\item \(f\) increasing if \(f(x) \leq f(y)\) for all \(x < y\).
+\end{itemize}
+\end{definition}
+
+\begin{proposition}[Increasing functions are borel measurable]
+
+\end{proposition}
+\section{Measures and corresponding properties}
+\label{sec:org71d6d03}
+\subsection{Measure}
+\label{sec:org23c60be}
+\textbf{Motivation: The definition of Measure comes from extending the definition of Length of an interval.}
+
+\begin{definition}[Measure]
+Let \(X\) be a set and \(S\) a \(\sigma\)-algebra on \(X\). A measure on \((X,S)\) is a function \(\mu: S \to [0,\infty]\), s.t. \(\mu (\emptyset) = 0\) and
+\[
+\mu (\cup_{k = 1}^{\infty} E_{k}) = \sum_{k = 1}^{\infty} \mu(E_k),
+\]
+where \((E_k)\) is a disjoint sequence in \(S\).
+\end{definition}
+
+\begin{definition}[Measure space]
+\((X,S)\) together with a defined measure is called measure space.
+\end{definition}
+\subsection{Properties of measure}
+\label{sec:orgac5e90b}
+\begin{proposition}[ ]
+Measure preserves the subset relation and the set different is represented by subtraction of measure.
+\end{proposition}
+
+\begin{proposition}[ ]
+Measure has countable subadditivity for the non-restrict disjoint sequence in the \(\sigma\)-algebra.
+\end{proposition}
+
+\begin{proposition}[Interchange of limit and sum when increasing union]
+Let \((X,S,\mu)\) be a measure space and \(E_1 \subseteq E_2 \subseteq \dots\) is an increasing sequence of sets in \(S\). Then the measure of the union of the sequence is the limit of \(\mu(E_k)\) when \(k \to \infty\).
+\end{proposition}
+
+\textbf{Remark: The property above also works for a decreasing sequence(The ``largest element'' has finite measure) with intersecion.}
+
+\begin{proposition}[Measure of a union]
+The following identity holds for finite measure:
+\[
+\mu(D\cup E) = \mu(D) + \mu(E) - \mu(D\cap E)
+\]
+\end{proposition}
+\subsection{Lebesgue Measure}
+\label{sec:org1d92167}
+Outer measure only have subadditivity, we can change it to additivity if we restrict one of the sets to be open, thus we have the following proposition:
+
+\begin{proposition}[Additivity for outer measure if open]
+Let \(A,G \subseteq \R\) are disjoint subsets with \(G\) open. Then
+\[
+\vert A \cup G \vert = \vert A \vert + \vert G \vert.
+\]
+\end{proposition}
+
+\begin{proposition}[Additivity for outer measure if closed]
+Let \(A,G \subseteq \R\) are disjoint subsets with \(G\) closed. Then
+\[
+\vert A \cup G \vert = \vert A \vert + \vert G \vert.
+\]
+\end{proposition}
+
+Now one can image if the following result also holds for one set is a borel set. Fortunately we have the following result:
+\begin{proposition}[Additivity for outer measure if borel]
+Let \(A,G \subseteq \R\) are disjoint subsets with \(G\) borel. Then
+\[
+\vert A \cup G \vert = \vert A \vert + \vert G \vert.
+\]
+\end{proposition}
+
+The result above comes from the following proposition:
+\begin{proposition}[Borel set approximation from below by closed sets]
+Suppose \(B\) a Borel set. Then \(\forall \epsilon > 0 \ \exists G\) closed, such that \(\vert B \ G\vert < \epsilon\).
+\end{proposition}
+
+This proposition basically tells us Borel set can be arbitrarily closed to a closed set.
+
+\textbf{Why we care about this approximation? Is borel set not good enough to describe the behaviour of \(\R\)?}
+
+The answer is YES!
+
+\begin{proposition}[Existence of a subset of \(\R\) which is not a borel set]
+The contra-example comes from the nonadditivity of outer measure.
+\end{proposition}
+
+\begin{proposition}[Outer measure restrict on borel sets in a measure]
+Outer measure on \((\R,\mathcal{B})\) is a measure, where \(\mathcal{B}\) refers to the Borel algebra.
+\end{proposition}
+
+Now we come to the most important definition of measure theory.
+
+\begin{definition}[Lebesgue measure]
+Lebesgue measure is the measure on \((\R,\mathcal{B}\), assigns to each Borel set its outer measure.
+\end{definition}
+
+\textbf{Remark: Lebesgue measure is the same as outer measure restrict on the Borel sets.}
+
+\begin{definition}[Lebesgue measurable]
+We say a set is Lebesgue measurable if there exists a Borel set and the set difference of the two sets is ``0'' w.r.t. outer measure.
+\end{definition}
+
+\textbf{This characterization tells us Lebesgue measurable set is very close to a Borel set in outer measure sense.}
+\section{Integration with respect to a Measure}
+\label{sec:org625ede7}
+
+\begin{definition}[\(S\)-partition]
+For a given set \(X\), let \(S\) be a \(\sigma\)-algebra on \(X\). An \(S\)-partition of \(X\) is a finite collection of disjoint sets such that their union is \(X\).
+\end{definition}
+
+In the sense of \(\R\), the \(S\)-partition can form very strange intervals instead of the ``Standard'' partition we give in Riemann integral.
+
+Once we define the partition one thing we can do is to ``sum''.
+
+\begin{definition}[Lower Lebesgue Sum]
+
+\end{definition}
+\section{Lp-Space}
+\label{sec:orgc5365a6}
+
+\begin{proposition}[\(L^p\) space is a vector space]
+\(L^p\)-space is a vector space by the triangle equality of the norm, i.e. norm of two elements' sum is less than sum of the norms of element, whcih implies finite norm.
+\end{proposition}
+\end{document}

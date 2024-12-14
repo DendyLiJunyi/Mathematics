@@ -1,0 +1,751 @@
+#+title: \zallman A Concise \\
+#+title: \zallman Introduction\\
+#+title: \zallman to\\
+#+title: \zallman Mathematical \\
+#+title: \zallman Logic\\
+#+AUTHOR: Wolfgang Rautenberg
+#+CREATOR:  Notes Taken by Dendy Li
+#+LATEX_HEADER: \input{~/Preamble/preamble.tex}
+#+LATEX_COMPILER: xelatex
+
+\newpage
+
+* COMMENT
+**
+Logic Symbols in Latex
++ and \wedge
++ or \vee
++ nagation \lnot
++ tautologically implies \models
+** English Words Unfamiliar
++ conjunction: connect two words.
++ disjunction: separation between things.
++ incompatibility: two things don't fit well.
++ nihilation: reduce to nothing.
++ syntax: sets of rules and principles makes sentence satisfies the rule of the corresponding language
++ bind: tie sth together by using a physical or metaphorical connection
++ metaphorical: word or phrase applied to one object which doesn't literally describe but helps to convey a deeper understanding
++ convey: share an idea
++ aforemention: sth that is already talked about before
+
+
+* Propositional Logic
+Overview:
+
+*Boolean functions and boolean formula*
+\begin{center}
+\begin{tikzpicture}
+\tikzstyle{line} = [draw, -latex']
+\node[align = center] (model)
+{\begin{tabular}{rc}
+\textbf{Propositional valuation} & \\
+\textbf{Realization} & \(\omega : \text{PV} \to \{0,1\}\) \\
+\textbf{Propositional Model} &
+\end{tabular}
+};
+
+\node[align = center, right = of model] (boolean)
+{\textbf{Boolean Function:} \( f : \{0,1\}^n \to \{0,1\} \)};
+
+\node[align = center, below = of model] (extend)
+{By recursive definition of \textbf{Formulas}, extend \(\omega\) to:\\
+\( \bar{\omega} : \varphi \to \{0,1\} \), \( \varphi \in F_n\).};
+
+\node[below = of boolean] (space1)
+{};
+
+\node[align = center, below = 2cm of $(space1)!0.5!(extend)$] (recursive)
+{\textbf{Fact: } \\
+Assign a truth value to a formula \( \Leftrightarrow \) Assign a true value at all occurance of the PV};
+
+\path [draw] (model) -- (extend);
+\path [draw] (extend) -- (recursive);
+\path [draw] (recursive) edge["\(\bar{\omega}\varphi = f(\omega \vec{p})\)"'] (boolean);
+
+\end{tikzpicture}
+\end{center}
+
+*Semantic of Propositional Logic*
+\begin{center}
+\begin{tikzpicture}
+\tikzstyle{line} = [draw, -latex']
+
+\node[align = center] (equiv)
+{\textbf{Semantic Equivalence:} \\
+\(\alpha \equiv \beta \Leftrightarrow \omega\alpha \equiv \omega\beta\)};
+
+\node[align = center, below = 2cm of equiv] (replace)
+{\textbf{Replacement Theorem:} \\
+\(\alpha \equiv \alpha' \Rightarrow \varphi \equiv \varphi'\), \\
+\( \varphi' \) is obtained from \( \varphi \) by replacing occurence of  \( \alpha \) in \( \varphi \), by \( \alpha' \).};
+
+\node[align = center, right = of $(equiv)!0.5!(replace)$] (Rep)
+{\textbf{Motivation:} \\
+If every boolean functions can \\
+be represented by a boolean formula?};
+
+\node[align = center, below = 2cm of $(Rep)!0.5!(replace)$] (DNF)
+{Every boolean function \( f \) can be represented by DNF \( \alpha_f \), i.e. \\
+\( \alpha_f := \lor_{f\vec{x} = 1} p_1^{x_1} \land \cdots \land p_n^{x_n}\), \\
+where \( (x_1, \dots, x_n) \in \{0,1\}^n \), \( p_i^0 := p_i, p_i^1 := \neg p_i \).};
+
+\node[align = center, below = of DNF] (funcomp)
+{\textbf{Functional Complete:} \\
+Logical signature is functional complete it can represent every boolean functions.};
+
+\path [draw] (equiv) -- (replace);
+\path [draw] (replace) -- (DNF);
+\path [draw] (DNF) -- (funcomp);
+
+\end{tikzpicture}
+\end{center}
+
+\newpage
+*Logical Consequence and its properties*
+
+\begin{center}
+\begin{tikzpicture}
+\tikzstyle{line} = [draw, -latex']
+
+\node[align = center] (model)
+{\textbf{Model:} \\
+If \( \omega\alpha = 1 \), \( \omega \) is a model of \( \alpha \), \\
+or \( \omega \) satisfies \( \alpha \), denote as \( \omega \models \alpha \). \\
+This definition can naturally be extended to \\
+a set of formulas \( X \). \\
+\( \models \) is the satisfiability relation. \\
+\( \alpha (X) \) is satisfiable if there exists a model.};
+
+\node[align = center, below = of model] (logc)
+{\textbf{Logical Consequence:} \\
+If \( \omega \models X \), then \( \omega \models \alpha \). \\
+We say \( \alpha \) is a logical consequence of \( X \).};
+
+\node[align = center, right = of model] (tautocontra)
+{\textbf{Tautology:} \\
+If all \( \omega \) satisfy \( \alpha \), \\
+\( \alpha \) is a tautology. \\
+\textbf{Contradiction:} \\
+If all \( \omega \) don't satisfy \( \alpha \), \\
+\( \alpha \) is a contradiction. \\
+\textbf{Negation of a tautology isn't a contradiction.}};
+
+\node[align = center, below = of logc] (proplogc)
+{\textbf{Basic properties of \( \models \):} \\
+\begin{tabular}{l}
+(R) : \textbf{Reflexive} \\
+(M) : \textbf{Monotone} \\
+(T) : \textbf{Transitive} \\
+\end{tabular}};
+
+\node[align = center, right = of proplogc] (factontau)
+{\textbf{Fact of Tautology:} \\
+Tautologies of the form \( \alpha \lor \neg\alpha \) is implied by \( p \lor \neg p \).};
+
+\node[align = center, below = of factontau] (substitution)
+{(S) : \textbf{Invariance Substitution}};
+
+\node[align = center, below = of proplogc] (compact)
+{(F) : \textbf{Finitary:} \\
+\( X \models \alpha \Rightarrow X_0 \models \alpha \), \\
+\( X_0 \subseteq X \), \( X_0 \) finite.};
+
+\node[align = center, below = 2cm of $(compact)!0.5!(substitution)$] (general)
+{\( \models \) shares the properties (RMTS) with almost all classical / non classical Logical systems. \\
+A propositional consequence relation \( \vdash \), is a relation \\
+between sets of formulas and formulas of a given FOL \( \calf \), \\
+with properties corresponds to (RMTS).};
+
+\node[align = center, below = of general] (deduction)
+{\textbf{Deduction Theorem:} \\
+\( X, \alpha \models \beta \Rightarrow X \models \alpha \to \beta\).};
+
+\path [draw] (model) -- (logc);
+\path [draw] (logc) -- (proplogc);
+\path [draw] (deduction) -- (general);
+\path [draw] (proplogc) -- (factontau);
+\path [draw] (factontau) -- (substitution);
+\path [draw] (substitution) -- (general);
+\path [draw] (factontau) -- (tautocontra);
+\path [draw] (model) -- (tautocontra);
+
+\end{tikzpicture}
+\end{center}
+
+*Syntax of Complete Calculus for \( \models \):*
+
+\begin{center}
+\begin{tikzpicture}
+\tikzstyle{line} = [draw, -latex']
+
+\node[align = center] (prove)
+{\textbf{Derivability Relation \( \vdash \):} \\
+\( \vdash \) is a relation between set of formulas and formulas. \\ If \( \vdash \) can applies to pair \( (X, \alpha) \), denote as \( X \vdash \alpha \), \\ call \( \alpha \) is a derivation from \( X \). Otherwise \( X \not\vdash \alpha \). \\ \( (X, \alpha) \) is called \textbf{sequent} w.r.t. Gentzen. \\
+\textbf{Calculus on \( \vdash \):} \\
+\begin{tabular}{l}
+(1) : A functional complete logical signature \(\{\land, \neg\}\); \\
+(2) : 6 basic rules which are designed for completeness, \\ these 6 rules will be showed in the equivalent definition below; \\
+(3) : Provable rules / Derivable rules are the rules \\ can be intefere from (1) (2).\end{tabular} \\
+\textbf{Remark:} \( \frac{X, \neg\alpha \vdash \beta, \neg\beta}{X \vdash \neg\alpha}\).};
+
+\node[align = center, below = of prove] (formalprove)
+{\textbf{Derivability Relation \( \vdash \) (Equivalent Definition):} \\
+Smallest relation \( \subseteq \mathfrak{B}\calf \times \calf \) and \\ closed under the following 6 rules: \\
+\begin{tabular}{ll}
+\( \frac{ }{\alpha \vdash \alpha} \) & \( \frac{X \vdash \alpha}{X' \vdash \alpha}, X \subseteq X' \). \\
+\( \frac{X \vdash \alpha, \beta}{X \vdash \alpha \land \beta} \) & \( \frac{X \vdash \alpha \land \beta}{X \vdash \alpha, \beta} \) \\
+\( \frac{X \vdash \neg \alpha, \alpha}{X \vdash \beta} \) & \( \frac{\alpha, X \vdash \beta | X, \neg \alpha \vdash \beta}{X \vdash \beta} \)
+\end{tabular}};
+
+\node[align = center, right = of prove] (models)
+{\textbf{Consequence Relation \( \models \)}};
+
+\node[align = center, below = of formalprove] (conventionofprove)
+{\textbf{Conventions of \( \vdash \):} \\
+\begin{tabular}{l}
+\( X, \alpha \vdash \alpha \Leftrightarrow X \cup \alpha \vdash \alpha \); \\
+\( X \vdash \alpha, \beta \Leftrightarrow X \vdash \alpha \text{and} X \vdash \beta \); \\
+The syntax is of the form \( \frac{\text{Premises}}{\text{Inference}}\).
+\end{tabular}};
+
+\node[align = center, below = of models] (syntacticmeaning)
+{\textbf{Syntactical Meaning of \( X \vdash \alpha \):} \\
+\( (X, \alpha) \) can be obtain \\ from stepwise application.};
+
+\node[align = center, below = of syntacticmeaning] (derivation)
+{\textbf{Derivation:} \\
+Derivation is the records of the \\ stepwise application process. \\
+\textbf{Derivation(Formal):} \\
+A derivation of \( (X, \alpha) \) \\ is a tuple \( (S_0, \dots, S_{n-1}, S_n) \) \\ where \( S_n = (X, \alpha) \), each of \( S_i \) \\ is obtained by the following rules: \\
+\begin{tabular}{l}
+(1) IS ; \\
+(2) Basic rules applies on \( S_k, k \leq i \).
+\end{tabular}};
+
+\path [draw] (syntacticmeaning) -- (models);
+\path [draw] (derivation) -- (syntacticmeaning);
+\path [draw] (prove) -- (formalprove);
+\path [draw] (formalprove) -- (conventionofprove);
+\path [draw] (prove) edge["\tiny{identical with}"] (models);
+
+\end{tikzpicture}
+\end{center}
+
+*Semantics of \( \vdash \):*
+
+\begin{center}
+\begin{tikzpicture}
+\tikzstyle{line} = [draw, -latex']
+
+\node[align = center] (induction-on-property) at (0,0)
+{\textbf{Property of sequents:} \\
+\( \cale \) is a property of sequents, \\ i.e. \( \cale \) can apply on the pair \( (X, \alpha) \). \\
+\textbf{Induction on property:} \\
+Let \( \cale \) be a property closed under \( \vdash \), \\ then \( X \vdash \alpha \) implies \( \cale(X,\alpha) \). \\ \( \cale := \models \) is a good example.};
+
+\node[align = center, right = of induction-on-property] (semantic-soundness)
+{\textbf{Soundness(Semantic):} \\
+\( \vdash \subseteq \models \)};
+
+\node[align = center, below = 2cm of $(induction-on-property)!0.5!(semantic-soundness)$] (connect)
+{With induction on property, we will deduce \\ a symmetric process \\ which builds a relation of \( \vdash \) and \( \models \).};
+
+\node[align = center, below = of connect] (finiteness-theorem-prove)
+{\textbf{Finiteness theorem for \( \vdash \):} \\
+If \( X \vdash \alpha \), then exists finite \( X_0 \subseteq X \) with \( X_0 \vdash \alpha \).};
+
+\node[align = center, below left = of finiteness-theorem-prove, text width = 0.3 \textwidth] (consistent)
+{\textbf{Consistent:} \\
+\( X \subseteq \calf \) is consistent if \( X \vdash \alpha \) for all \( \alpha \); else consistent. \\
+\( X \subseteq \calf \) is maximal consistent if \( X \) is consistent and any \( X \subseteq Y \), is inconsistent.};
+
+\node[align = center, below = of consistent] (top-down-bottom-up)
+{\( C^+ : X \vdash \alpha \Leftrightarrow X, \neg\alpha \vdash \bot \); \\
+\( C^- : X \vdash \neg\alpha \Leftrightarrow X, \alpha \vdash \bot \).};
+
+\node[align = center, right = of consistent] (Lindenbaum)
+{\textbf{Lindenbaum's theorem:} \\
+Every consistent set \( X \) can be extended \\ to a maximally consistent set \( X' \supseteq X \)};
+
+\node[align = center, below right = of consistent] (property-max-consistent)
+{\textbf{Properties of maximal consistent:} \\
+\begin{tabular}{l}
+(1) : \( X \vdash \neg\alpha \Leftrightarrow X \not\vdash \alpha \); \\
+(2) : Maximally consistent set \( X \) is satisfiable.
+\end{tabular}};
+
+\node[align = center, below = of property-max-consistent] (completeness)
+{\textbf{Completeness theorem:} \\
+\( X \vdash \alpha \Leftrightarrow X \models \alpha \).};
+
+\node[align = center, below = of completeness] (result-completeness)
+{\textbf{Results of completeness theorem:} \\
+\begin{tabular}{l}
+(1) : If \( X \vdash \alpha \), then fintite \( X_0 \subseteq X \), \( X_0 \models \alpha \). \\
+(2) : A set \( X \) is satisfiable then each finite subset of \( X \) is satisfiable.\end{tabular}};
+
+\path [draw] (property-max-consistent) -- (completeness);
+\path [draw] (completeness) -- (result-completeness);
+\path [draw] (property-max-consistent) -- (consistent);
+\path [draw] (induction-on-property) edge["induce"] (semantic-soundness);
+\path [draw] (finiteness-theorem-prove) -- (connect);
+\path [draw] (consistent) -- (finiteness-theorem-prove);
+\path [draw] (consistent) -- (top-down-bottom-up);
+
+\end{tikzpicture}
+\end{center}
+
+*Hilbert Calculi:*
+
+\begin{center}
+\begin{tikzpicture}
+\tikzstyle{line} = [draw, -latex']
+
+\node[align = center] (Hilbert)
+{\textbf{Hilbert Calculi \( \vdash_H \):} \\
+\begin{tabular}{l}
+(1) Logical Signature : \( \{\neg, \land\} \) \\
+(2) Logical axiom scheme : \\
+1. \( (\alpha \to \beta \to \gamma) \to (\alpha \to \beta) \to \alpha \to \gamma \); \\
+2. \( \alpha \to \beta \to \alpha \land \beta \); \\
+3. \( \alpha \land \beta \to \alpha \), \( \alpha \land \beta \to \beta \); \\
+4. \( (\alpha \to \neg \beta) \to \beta \to \neg \alpha \).
+\end{tabular}};
+
+\end{tikzpicture}
+\end{center}
+
+** Boolean Functions and Formulas
+*** What is Prositional Language?
+#+ATTR_LATEX: :options [n-ary Boolean Functions]
+#+begin_definition
+\(f:\{0,1\}^n\to\{0,1\}\) is called an \(n\)-ary Boolean function or Truth function.
+#+end_definition
+
+#+begin_proposition
+\(n\)-ary Boolean function \(f\) has \(2^n\) tuples in its *domain*, this gives \(2^{2^n}\) ways to construct an \(n\)-ary Boolean function.
+#+end_proposition
+
+#+begin_definition
+We denote the totality above as \(\mathbf{B}_n\), that is \(\mathbf{B}_n=2^{2^n}\).
+#+end_definition
+
+#+ATTR_LATEX: :options [Propositional Language(defined by induction)]
+#+BEGIN_definition
+Given a set of logic symbols(/Logical signature/) and a set of variables. We define propositional language \(\mathfrak{F}\) inductively:
+1. one-element strings are formulas(/Prime Formulas/).
+2. If \(\alpha, \beta\) are all formulas then \(\alpha \circ \beta\) here \(\circ\) refers to binary Boolean Functions and \(\lnot\alpha\in S.\)
+#+END_definition
+
+
+Based on set theory we also have another definition:
+#+ATTR_LATEX: :options [Propositional Language(defined in set-theoretical way)]
+#+BEGIN_definition
+Propositional Language \(\mathfrak{F}\) is the smallest set of all *String* \(S\) built from /logic symbols/ and /propsitional variables/, satisfying the following properties:
+\begin{itemize}
+\item[f1] \(p_1,\dots\in S.\)
+\item[f2] \(\alpha,\beta\in S\) they are closed under the binary Boolean function and unary Boolean function.
+\end{itemize}
+#+END_definition
+
+#+ATTR_LATEX: :options [Formula]
+#+BEGIN_definition
+A string in a propositional language is a formula.
+#+END_definition
+
+#+ATTR_LATEX: :options [ ]
+#+BEGIN_examplle
+For Boolean Signature we have the Boolean formulas.
+#+END_examplle
+
+Worth noticing that we don't use parentheses for the unary operation.
+
+*Now we let \(\mathfrak{F}\) to be the set of all Boolean formulas.*
+
+For convention we obey the following rules:
+1. Omit the outside parentheses.
+2. If order of the logic connectives makes the formula no ambiguity without parentheses then we omit the parentheses.
+3. Multiple use of \(\rightarrow\) we associate to the right; multiple use of other binary connectives we associate them to the left.
+
+*In arithmetic one used to associate to the left but \(x^{y^z}\) is an example of associate to the right.*
+
+#+ATTR_LATEX: :options [Induction principle for formulas]
+#+BEGIN_theorem
+Let \(\Epsilon\) be a property of strings(We write \(\Epsilon\psi\) to represent \(\Epsilon\) is a property of string \(\psi\)), such that(If one can show):
+- \(\Epsilon\pi\) for prime formual \(\pi\),
+- \(\Epsilon\alpha, \Epsilon\beta\), then the formulas building from \(\alpha, \beta\) also have this property.
+Then \(\Epsilon\) holds for all formula.
+#+END_theorem
+
+*Some Language notation:*
+- *Such that means suppose to show, means the goal is...*
+
+- *Compound is the words from chemestry, which means that many different kinds of elements together form sth, this sth is so-called compound.*
+
+#+ATTR_LATEX: :options [Unique reconstruction property]
+#+BEGIN_theorem
+If \(\alpha, \beta\) where \(\alpha \circ \beta\) construct \(\varphi\), then \(\alpha, \beta\) are uniquely determined.
+#+END_theorem
+
+This property looks very weird since it somehow have the idea of the free generation and have some idea of unique readability theorem.
+
+#+ATTR_LATEX: :options [Inductive defintion of subformula]
+#+BEGIN_definition
+- subformula of prime formula is itself
+- subformula of \(\neg \alpha\) is \(\{\neg \alpha\} \cup \) subformula of \(\alpha\)
+- for boolean signature just the natural way: itself and subformulas of the component.
+#+END_definition
+
+*By arithmetic one emphersize the numbers and the operations on it.*
+
+#+ATTR_LATEX: :options [Propositional valuation(Realization of propositional model)]
+#+BEGIN_definition
+A propositional valuation \(\omega\) is a function \(\omega:PV \to \{0,1\}\).
+#+END_definition
+
+*Stipulation: a rule must be follow or sth must be done.*
+
+we can extend the valuation in natural inductive way:
+- \(\omega\alpha \circ \beta = \omega\alpha \circ \omega\beta\)
+- \(\omega\neg\alpha = \neg\omega\alpha\)
+
+By the extension we can talk about the valuation of formula \(\varphi\).
+
+For the next part we will talk about the connection between boolean functions and boolean formulas
+
+*** Correspondence between boolean formulas and boolean functions
+** Semantic Equivalence and Normal Forms
+* Predicate Logic
+** Overview of the basical objects
+
+\begin{center}
+\begin{tikzpicture}
+\tikzstyle{line} = [draw, -latex']
+
+\node[align = center] (symbols)
+{\begin{tabular}{l}
+\textbf{Extralogical Structure \( L \):} \\
+Constant symbols, function symbols, relation symbols. \\
+e.g. in group theory \(\{ \circ, e\}\). \\
+
+\textbf{\( L \)- Structure \(\cala\):} \\
+\( (A, L^{\cala}) \), \( A \) is the domain of \( \cala \), \\
+\( L^{\cala} \) consists of the interpretation of the extralogical structure. \\
+\end{tabular}};
+
+\node[align = center, below = of symbols] (alphabet)
+{\begin{tabular}{l}
+\textbf{Alphabet of \( L \):} \\
+The alphabet of \( L \) consists of \( L \), \\
+logical symbols and varibales.
+
+\textbf{Strings of \( L \):} \\
+\( \cals := \{ \text{The set of all strings from } L \} \).
+\end{tabular}
+};
+
+\node[below = of alphabet] (spaceA)
+{};
+
+\node[align = center, right = of spaceA] (recursive)
+{\begin{tabular}{l}
+\textbf{Recursive definition of:} \\
+Terms \\
+Prime Formulas \\
+Varibales
+\end{tabular}};
+
+\node[align = center, below = of spaceA] (FOL)
+{\begin{tabular}{l}
+\textbf{\( \call \) := \{The set of all formulas determined by \( L \).\}}\\
+\textbf{\( \call^0 \) := \{The set of all the sentences\}.} \\
+\textbf{Sentences: } Formula with no free variable.
+\end{tabular}};
+
+\node[align = center, below = of FOL] (Lstructure)
+{\( L \)- structure for extralogical symbol \( L \), \\
+naturally become \( \call \)- structure, \\
+with the recursive definition of terms and formulas.};
+
+\path [line] (symbols) -- (alphabet);
+\path [line] (alphabet) -- (FOL);
+\path [line] (FOL) -- (Lstructure);
+
+
+
+\end{tikzpicture}
+\end{center}
+
+** Mathematical Structures
+
+#+ATTR_LATEX: :options ["Specific" Structure and related definition]
+#+BEGIN_definition
+For structure \(\mathfrak{A}\) we have the following description:
+
+\begin{center}
+\begin{tabular}{ccc}
+Notations & \(A\): Domain & relations \(r\), operations \(f\), constant \(c\)\\
+
+Descriptions & finite(infinite) structure & relation(algebraic) structure
+\end{tabular}
+\end{center}
+
++ Relation structure has no operation and constant
++ Algebraic structure has no relation
+#+END_definition
+
+*We want to study the class of structures, so we need a "connection" which enables us to talk about a class of structures.*
+
+#+ATTR_LATEX: :options [Extralogical Signature]
+#+BEGIN_definition
+A finite set \(L\) consisting of relation, operation, and constant symbols of given arity, is a (extralogical) structure.
+#+END_definition
+
+#+ATTR_LATEX: :options [Closed under operations]
+#+BEGIN_definition
+\(\forall a \in A^n \Rightarrow fa \in A\).
+#+END_definition
+
+#+ATTR_LATEX: :options [Restriction to a subset of domain]
+#+BEGIN_definition
+*Restriction for Relation:*
++ Intersect product sets
+*Restriction for Operations:*
++ Closed under operations w.r.t. the subset which we want to restrict on.
+#+END_definition
+
+#+ATTR_LATEX: :options [Substructure]
+#+BEGIN_definition
+Let \(\mathfrak{B}\) be an L-Structure, \(A \subset B\) nonempty and closed
+under all operations of \(B\) and inherits all the interpratations of constant of \(B\).
+#+END_definition
+
+#+ATTR_LATEX: :options [Common properties of binary operations and binary relations]
+#+BEGIN_proposition
+*Properties for binary operations:*
++ Commutivity;
++ Associativity;
++ Idempotent: \(a \circ a = a\);
++ Invertible: \(\forall a,b, \exists x,y \Rightarrow a \circ x = b \land y \circ a = b\).
+
+*Properties for binary relations:*
++ reflexive and irreflexive;
++ symmetric and antisymmetric;
++ transitive;
++ connex(Trinity).
+#+END_proposition
+
+
+
+** Syntax of Elementary Languages
+
+\begin{center}
+\begin{tikzpicture}
+\tikzstyle{line} = [draw, -latex']
+
+\node [align = center] (Term)
+{\textbf{Term} \\
+\begin{tabular}{l}
+1. \textbf{Prime Term} : Variables and constants \\
+2. \textbf{Compound of functional symbol and terms}
+\end{tabular}};
+
+\node[right = of Term, align = center] (Formula)
+{\textbf{Formula} \\
+\begin{tabular}{l}
+1. \textbf{Terms} \\
+2. \textbf{Compound of relation and terms} \\
+3. \textbf{Compound of logical connectives} \\ \textbf{and formulas}
+\end{tabular}};
+
+\node[below = of Formula] (Variables)
+{\begin{tabular}{l}
+1. \textbf{Variable} \\
+2. \textbf{Free Variable} \Rightarrow \textbf{Sentences}\\
+3. \textbf{Bounded Variable}
+\end{tabular}
+};
+
+
+\path [line] (Term) -- (Formula);
+\path [line] (Formula) -- (Variables);
+
+\end{tikzpicture}
+\end{center}
+
+*Goal: We want to delimit(determine the limit) the theoretical framework which enables us to precisely talk about mathematical structures*
+
+This goal arise the definition of object language.
+#+ATTR_LATEX: :options [Object Language]
+#+BEGIN_definition
+Object Language is the language can be described by metalanguage.
+#+END_definition
+
+#+ATTR_LATEX: :options [Object(w.r.t. object language)]
+#+BEGIN_definition
+Objects are formalized elements of the language.
+#+END_definition
+
+To formalize interesting properties of a structure, one need the following things:
+
+#+ATTR_LATEX: :options [Individual Variables(Informal)]
+#+BEGIN_definition
+Individual variables are a "place-holder" with a predicate letter. It stands for unspecified argument of the predicate.
+#+END_definition
+
+#+ATTR_LATEX: :options [Extralogic Structures(w.r.t. the given language)]
+#+BEGIN_definition
+Sufficient number of relations, funcitons and constant.
+#+END_definition
+
+The language with the two features above is the first order language or elementary languages, now we give a formal definiton.
+
+#+ATTR_LATEX: :options [First-order language(Informal)]
+#+BEGIN_definition
+First-order language is a set consists of the following type of subsets:
+- Alphabet
+  - Individual variables(Var): countably many variables.
+  - Extralogic structures
+- Syntax of first-order logic
+- Semantics of first-order logic
+#+END_definition
+
+*Remark:*
+- *One can only differ two first-order language by the Extralogical Structures.*
+- *Individual Variables here often denotes by \(x,y,z,\dots\).*
+
+#+ATTR_LATEX: :options [Alphabet]
+#+BEGIN_definition
+Alphabet is the set of basic symbols of a first-order language determined by a (extralogical) signature \(L\).
+#+END_definition
+
+* Gödel's Completeness Theorem
+
+\begin{center}
+\begin{tikzpicture}
+\tikzstyle{line} = [draw, -latex']
+
+\node[align = center] (Deduction)
+{
+\begin{tabular}{l}
+\textbf{Natural Deduction:} Gentzen's type \(\vdash_G\)\\
+\textbf{Hilbert Calculi:} Modus ponens \(\vdash_H\)
+\end{tabular}};
+
+\node[align = center, right = of Deduction] (CompletenessTheorem)
+{\textbf{Gödel's Completeness Theorem} \\
+\begin{tabular}{l}
+1. \(\vdash_H = \models\) \\
+2. \(\vdash_G = \models\) \\
+3. \textbf{Finiteness Theorem:} \\ \(X \models \alpha \Rightarrow  X_0 \models \alpha, X_0 \subseteq X, X_0 \text{ finite.}\) \\
+4. \textbf{Compactness Theorem(Syntactic):} \\ Any set of first order formula \(X\) is satisfiable \(\Rightarrow\) \\ Every finite subset of \(X\) is satisfiable.
+\end{tabular}
+};
+
+\node[align = center, below = of CompletenessTheorem] (Complete)
+{A theory is \textbf{complete} if it is consistent \\ and has no proper consistent extension.};
+
+\path [draw] (Deduction) -- (CompletenessTheorem);
+\path [draw] (CompletenessTheorem) -- (Complete);
+
+\end{tikzpicture}
+\end{center}
+
+* COMMENT
+*Below is a sketch of what are the key points*
+** Implication and Negation
+*** Properties of logical implication
+** Axiom Sets
+*** First-Order Description
+
+** Zorn's Lemma
+** Relations
+*** Order-Relations
+*** Symmetry of Relations
+*** Irreflexive Relations
+*** Finite groups and order-relations
+** Models
+*** Axioms of Integral Domains
+*** Terms
+*** Formula Truth
+*** Variable Occurrences
+*** Substitutions
+*** Truth in Structures
+*** First-order sentences
+*** Number of Models
+** Logical Implication
+*** Deciding Logical Implication
+** Famous Formulas
+
+** Derivations
+*** Derivation of Formulas
+** Structure
+*** Axioms for Structures
+*** Constant Structures
+** Proofs in First-Order Logic
+** Natural numbers and Successor
+** Dense Linear Order
+** Addition Machines
+** Recursion
+** Unbounded Search
+** Enumerations of total functions
+** Robinson's Arithmetic
+** Categoricity
+
+* Incompleteness and Undecidability
+Overview:
+\begin{center}\begin{tikzcd}
+\text{Recursive and Primitive Recursive Functions} \ar[d] & \text{Arithmatic on syntax and formal proofs} \ar[dl]\\
+\text{Representability of recursive functions} \ar[d] & \\
+\text{First Incompleteness Theorem} \ar[d] \ar[dr] \\
+\text{Decidability and Undecidability} & \text{First-order arithmetical hierachy}
+\end{tikzcd}\end{center}
+
+Gödel's first incompleteness theorem informal description:
+*Basic Assumption:*
+\begin{center}\begin{tikzcd}
+\mathcal{T}:\text{Axiomatic theory} \ar[r,"\text{describe}"] & \mathcal{A}:\text{Given domain of objects} \\
+\mathcal{L}:\text{Language of} \mathcal{T} \ar[u,"\text{Internal encoding of syntax of}\mathcal{L}"]
+\end{tikzcd}\end{center}
+
+*Result:*
+Sentence \(\gamma:\)"I(\(\gamma\)) am provable in \(\mathcal{T}\)" is true in \(\mathcal{A}\) but unprovable in \(\mathcal{T}\)
+
+This result is kind of like the liar paradox. "I will not died because of fire." This is true because within the rule I will not die. This is unprovable because we can't make sure the semantic of this sentence within the rules.
+
+
+** Recursive and Primitive Recursive Functions
+
+#+ATTR_LATEX: :options [Partial Function]
+#+BEGIN_definition
+Let \(X,Y\) be sets, \(S\subset X\). \(f:S\to Y\) is a partial function from \(X\to Y\).
+#+END_definition
+
+*Difference between primitive recursive functions and recursive functions*
+- Primitive recursive functions are from primitive recursive functions with one input.
+- Recursive function: Partial functions take finite tuples of natural numbers and return a single natural number.
+
+#+ATTR_LATEX: :options [ ]
+#+BEGIN_proposition
+Primitive recursive function \(\subset\) Recursive function \(\subset\) Partial recusive function.
+#+END_proposition
+
+#+ATTR_LATEX: :options [Halting Problem]
+#+BEGIN_definition
+
+#+END_definition
+
+*Goal: Code Undecidability into logic*
+
+#+ATTR_LATEX: :options [Computation]
+#+BEGIN_definition
+Computation is a sequence of configuration of addition mechine.
+#+END_definition
+
+*Remark: Here configuration means the current states.*
+
+* Kappa-categorical
+#+ATTR_LATEX: :options [Kappa-categorical]
+#+BEGIN_definition
+We say a theory is \(\aleph_0\)-categorical if any countable infinite models are isomorphic.
+#+END_definition
